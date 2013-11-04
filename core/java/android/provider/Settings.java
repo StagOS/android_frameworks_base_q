@@ -2567,8 +2567,8 @@ public final class Settings {
 
             // At one time in System, then Global, but now back in Secure
             MOVED_TO_SECURE.add(Secure.INSTALL_NON_MARKET_APPS);
-
             MOVED_TO_SECURE.add(Secure.LOCKSCREEN_VISUALIZER_ENABLED);
+            MOVED_TO_SECURE.add(Secure.VOLUME_LINK_NOTIFICATION);
         }
 
         @UnsupportedAppUsage
@@ -10323,6 +10323,14 @@ public final class Settings {
 
         private static final Validator TORCH_POWER_BUTTON_GESTURE_VALIDATOR = NON_NEGATIVE_INTEGER_VALIDATOR;
 
+        /*
+         * Boolean value whether to link ringtone and notification volume
+         * @hide
+         */
+        public static final String VOLUME_LINK_NOTIFICATION = "volume_link_notification";
+
+        private static final Validator VOLUME_LINK_NOTIFICATION_VALIDATOR = BOOLEAN_VALIDATOR;
+
         /**
          * This are the settings to be backed up.
          *
@@ -10468,7 +10476,8 @@ public final class Settings {
             AWARE_LOCK_ENABLED,
             LOCKSCREEN_VISUALIZER_ENABLED,
             HIDE_LOCKICON,
-            TORCH_POWER_BUTTON_GESTURE
+            TORCH_POWER_BUTTON_GESTURE,
+            VOLUME_LINK_NOTIFICATION
         };
 
         /**
@@ -10668,6 +10677,7 @@ public final class Settings {
             VALIDATORS.put(LOCKSCREEN_VISUALIZER_ENABLED, LOCKSCREEN_VISUALIZER_ENABLED_VALIDATOR);
             VALIDATORS.put(HIDE_LOCKICON, HIDE_LOCKICON_VALIDATOR);
             VALIDATORS.put(TORCH_POWER_BUTTON_GESTURE, TORCH_POWER_BUTTON_GESTURE_VALIDATOR);
+            VALIDATORS.put(VOLUME_LINK_NOTIFICATION, VOLUME_LINK_NOTIFICATION_VALIDATOR);
         }
 
         /**
