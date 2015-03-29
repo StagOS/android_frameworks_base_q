@@ -5424,6 +5424,15 @@ public final class Settings {
         public static final String TEXT_CHARGING_SYMBOL = "text_charging_symbol";
 
         /**
+         * @hide
+         */
+        public static final String SCREENSHOT_SHUTTER_SOUND = "screenshot_shutter_sound";
+
+        /** @hide */
+        private static final Validator SCREENSHOT_SHUTTER_SOUND_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -5544,6 +5553,7 @@ public final class Settings {
             NETWORK_TRAFFIC_REFRESH_INTERVAL,
             NETWORK_TRAFFIC_HIDEARROW,
             NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE,
+            SCREENSHOT_SHUTTER_SOUND,
         };
 
         /**
@@ -5724,6 +5734,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_REFRESH_INTERVAL);
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_HIDEARROW);
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE);
+            PRIVATE_SETTINGS.add(SCREENSHOT_SHUTTER_SOUND);
         }
 
 
@@ -5881,7 +5892,9 @@ public final class Settings {
             VALIDATORS.put(NETWORK_TRAFFIC_REFRESH_INTERVAL, NETWORK_TRAFFIC_REFRESH_INTERVAL_VALIDATOR);
             VALIDATORS.put(NETWORK_TRAFFIC_HIDEARROW, NETWORK_TRAFFIC_HIDEARROW_VALIDATOR);
             VALIDATORS.put(NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE, NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE_VALIDATOR);
-       }
+            VALIDATORS.put(SCREENSHOT_SHUTTER_SOUND,
+                    SCREENSHOT_SHUTTER_SOUND_VALIDATOR);
+        }
 
         /**
          * These entries are considered common between the personal and the managed profile,
