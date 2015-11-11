@@ -5634,6 +5634,15 @@ public final class Settings {
         private static final Validator ANBI_ENABLED_OPTION_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
+         * Whether to allow one finger quick settings expansion on the right side of the statusbar.
+         * @hide
+         */
+        public static final String STATUS_BAR_QUICK_QS_PULLDOWN = "status_bar_quick_qs_pulldown";
+
+        /** @hide */
+        private static final Validator STATUS_BAR_QUICK_QS_PULLDOWN_VALIDATOR = ANY_INTEGER_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -5771,6 +5780,7 @@ public final class Settings {
             LOCKSCREEN_MEDIA_BLUR,
             SCREEN_OFF_ANIMATION,
             ANBI_ENABLED_OPTION,
+            STATUS_BAR_QUICK_QS_PULLDOWN,
         };
 
         /**
@@ -5970,6 +5980,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SCREEN_OFF_ANIMATION);
             PRIVATE_SETTINGS.add(FORCE_SHOW_NAVBAR);
             PRIVATE_SETTINGS.add(ANBI_ENABLED_OPTION);
+            PRIVATE_SETTINGS.add(STATUS_BAR_QUICK_QS_PULLDOWN);
         }
 
 
@@ -6146,6 +6157,7 @@ public final class Settings {
             VALIDATORS.put(SCREEN_OFF_ANIMATION, SCREEN_OFF_ANIMATION_VALIDATOR);
             VALIDATORS.put(FORCE_SHOW_NAVBAR, FORCE_SHOW_NAVBAR_VALIDATOR);
             VALIDATORS.put(ANBI_ENABLED_OPTION, ANBI_ENABLED_OPTION_VALIDATOR);
+            VALIDATORS.put(STATUS_BAR_QUICK_QS_PULLDOWN, STATUS_BAR_QUICK_QS_PULLDOWN_VALIDATOR);
         }
 
         /**
