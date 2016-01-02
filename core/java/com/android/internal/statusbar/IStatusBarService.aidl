@@ -115,4 +115,7 @@ interface IStatusBarService
      * Stag
      */
     void toggleCameraFlash();
+
+    // Used to disable keyboard rotation
+    void setAutoRotate(boolean enabled);
 }
