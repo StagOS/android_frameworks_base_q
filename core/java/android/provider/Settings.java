@@ -5450,6 +5450,16 @@ public final class Settings {
         private static final Validator FINGERPRINT_SUCCESS_VIB_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
+         * whether to enable or disable vibration on succesful fingerprint auth
+         *
+         * @hide
+         */
+        public static final String FINGERPRINT_ERROR_VIB = "fingerprint_error_vib";
+
+        /** @hide */
+        private static final Validator FINGERPRINT_ERROR_VIB_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
          * Whether to display the torch option in the power menu
          *
          * @hide
@@ -5582,6 +5592,7 @@ public final class Settings {
             NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE,
             SCREENSHOT_SHUTTER_SOUND,
             FINGERPRINT_SUCCESS_VIB,
+            FINGERPRINT_ERROR_VIB,
             POWERMENU_TORCH,
         };
 
@@ -5765,6 +5776,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE);
             PRIVATE_SETTINGS.add(SCREENSHOT_SHUTTER_SOUND);
             PRIVATE_SETTINGS.add(FINGERPRINT_SUCCESS_VIB);
+            PRIVATE_SETTINGS.add(FINGERPRINT_ERROR_VIB);
             PRIVATE_SETTINGS.add(POWERMENU_TORCH);
         }
 
@@ -5926,6 +5938,7 @@ public final class Settings {
             VALIDATORS.put(SCREENSHOT_SHUTTER_SOUND,
                     SCREENSHOT_SHUTTER_SOUND_VALIDATOR);
             VALIDATORS.put(FINGERPRINT_SUCCESS_VIB, FINGERPRINT_SUCCESS_VIB_VALIDATOR);
+            VALIDATORS.put(FINGERPRINT_ERROR_VIB, FINGERPRINT_ERROR_VIB_VALIDATOR);
             VALIDATORS.put(POWERMENU_TORCH, POWERMENU_TORCH_VALIDATOR);
         }
 
