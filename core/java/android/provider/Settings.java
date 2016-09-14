@@ -5323,6 +5323,16 @@ public final class Settings {
                 ANY_INTEGER_VALIDATOR;
 
         /**
+         * Whether to disable showing arrows in network traffic indicators
+         * @hide
+         */
+        public static final String NETWORK_TRAFFIC_HIDEARROW = "network_traffic_hidearrow";
+
+        /** @hide */
+        private static final Validator NETWORK_TRAFFIC_HIDEARROW_VALIDATOR =
+                ANY_INTEGER_VALIDATOR;
+
+        /**
          * @hide
          */
         public static final String BATTERY_BAR_STYLE = "battery_bar_style";
@@ -5453,6 +5463,7 @@ public final class Settings {
             GESTURE_PILL_TOGGLE,
             NETWORK_TRAFFIC_STATE,
             NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD,
+            NETWORK_TRAFFIC_HIDEARROW,
         };
 
         /**
@@ -5627,6 +5638,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(GESTURE_PILL_TOGGLE);
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_STATE);
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD);
+            PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_HIDEARROW);
         }
 
 
@@ -5778,7 +5790,8 @@ public final class Settings {
             VALIDATORS.put(GESTURE_PILL_TOGGLE, GESTURE_PILL_TOGGLE_VALIDATOR);
             VALIDATORS.put(NETWORK_TRAFFIC_STATE, NETWORK_TRAFFIC_STATE_VALIDATOR);
             VALIDATORS.put(NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD, NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD_VALIDATOR);
-        }
+            VALIDATORS.put(NETWORK_TRAFFIC_HIDEARROW, NETWORK_TRAFFIC_HIDEARROW_VALIDATOR);
+       }
 
         /**
          * These entries are considered common between the personal and the managed profile,
