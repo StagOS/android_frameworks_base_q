@@ -49,6 +49,7 @@ import com.android.systemui.qs.tiles.RebootTile;
 import com.android.systemui.qs.tiles.RotationLockTile;
 import com.android.systemui.qs.tiles.SyncTile;
 import com.android.systemui.qs.tiles.UiModeNightTile;
+import com.android.systemui.qs.tiles.SoundTile;
 import com.android.systemui.qs.tiles.UserTile;
 import com.android.systemui.qs.tiles.WifiTile;
 import com.android.systemui.qs.tiles.WorkModeTile;
@@ -87,6 +88,7 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<DataSwitchTile> mDataSwitchTileProvider;
     private final Provider<GamingModeTile> mGamingModeTileProvider;
     private final Provider<AODTile> mAODTileProvider;
+    private final Provider<SoundTile> mSoundTileProvider;
 
     private QSTileHost mHost;
 
@@ -115,6 +117,7 @@ public class QSFactoryImpl implements QSFactory {
             Provider<DataSwitchTile> dataSwitchTileProvider,
             Provider<GamingModeTile> gamingModeTileProvider,
             Provider<AODTile> aodTileProvider) {
+            Provider<SoundTile> soundTileProvider) {
         mWifiTileProvider = wifiTileProvider;
         mBluetoothTileProvider = bluetoothTileProvider;
         mCellularTileProvider = cellularTileProvider;
@@ -139,6 +142,7 @@ public class QSFactoryImpl implements QSFactory {
         mDataSwitchTileProvider = dataSwitchTileProvider;
         mGamingModeTileProvider = gamingModeTileProvider;
         mAODTileProvider = aodTileProvider;
+        mSoundTileProvider = soundTileProvider;
     }
 
     public void setHost(QSTileHost host) {
@@ -206,6 +210,8 @@ public class QSFactoryImpl implements QSFactory {
                 return mGamingModeTileProvider.get();
             case "aod":
                 return mAODTileProvider.get();
+            case "sound":
+                return mSoundTileProvider.get();
         }
 
         // Intent tiles.
