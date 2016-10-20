@@ -26,4 +26,7 @@
 
     <dimen name="battery_bar_view_height">6dp</dimen>
 
+    <!-- Custom Carrier Label -->
+    <dimen name="status_bar_carrier_height">11dp</dimen>
+
 </resources>
