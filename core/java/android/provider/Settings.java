@@ -5286,6 +5286,24 @@ public final class Settings {
         public static final String CUSTOM_CARRIER_LABEL = "custom_carrier_label";
 
         /**
+         * Carrier Label Custom Color
+         * @hide
+         */
+        public static final String STATUS_BAR_CARRIER_COLOR = "status_bar_carrier_color";
+
+        /**
+         * Settings for carrier label font size
+         * @hide
+         */
+        public static final String STATUS_BAR_CARRIER_FONT_SIZE = "status_bar_carrier_font_size";
+
+        /**
+         * Custom carrier label font style
+         * @hide
+         */
+        public static final String STATUS_BAR_CARRIER_FONT_STYLE = "status_bar_carrier_font_style";
+
+        /**
          * Whether to show the battery bar
          * @hide
          */

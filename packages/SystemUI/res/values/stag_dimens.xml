@@ -46,4 +46,7 @@
     <dimen name="dismiss_all_button_width">55dp</dimen>
     <dimen name="dismiss_all_fab_src_size">24dp</dimen>
 
+    <!-- Custom Carrier Label -->
+    <dimen name="status_bar_carrier_height">11dp</dimen>
+
 </resources>

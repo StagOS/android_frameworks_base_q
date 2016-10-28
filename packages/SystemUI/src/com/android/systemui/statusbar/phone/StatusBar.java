@@ -129,6 +129,9 @@ import android.view.animation.AccelerateInterpolator;
 import android.widget.DateTimeView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.FrameLayout;
+import android.widget.ImageSwitcher;
+import android.widget.LinearLayout;
 
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.internal.colorextraction.ColorExtractor;
