@@ -4503,6 +4503,15 @@ public final class Settings {
                 BOOLEAN_VALIDATOR;
 
         /**
+         * @hide
+         */
+        public static final String OMNI_ADVANCED_REBOOT = "advanced_reboot";
+
+        /** @hide */
+        private static final Validator OMNI_ADVANCED_REBOOT_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
          * IMPORTANT: If you add a new public settings you also have to add it to
          * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
          * it to PRIVATE_SETTINGS below. Also add a validator that can validate
@@ -4794,6 +4803,7 @@ public final class Settings {
             HEADS_UP_BLACKLIST_VALUES,
             TORCH_LONG_PRESS_POWER_GESTURE,
             TORCH_LONG_PRESS_POWER_TIMEOUT,
+            OMNI_ADVANCED_REBOOT,
         };
 
         /**
@@ -4936,6 +4946,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(HEADS_UP_BLACKLIST_VALUES);
             PRIVATE_SETTINGS.add(TORCH_LONG_PRESS_POWER_GESTURE);
             PRIVATE_SETTINGS.add(TORCH_LONG_PRESS_POWER_TIMEOUT);
+            PRIVATE_SETTINGS.add(OMNI_ADVANCED_REBOOT);
         }
 
         /**
@@ -5049,6 +5060,7 @@ public final class Settings {
             VALIDATORS.put(HEADS_UP_BLACKLIST_VALUES, HEADS_UP_BLACKLIST_VALUES_VALIDATOR);
             VALIDATORS.put(TORCH_LONG_PRESS_POWER_GESTURE, TORCH_LONG_PRESS_POWER_GESTURE_VALIDATOR);
             VALIDATORS.put(TORCH_LONG_PRESS_POWER_TIMEOUT, TORCH_LONG_PRESS_POWER_TIMEOUT_VALIDATOR);
+            VALIDATORS.put(OMNI_ADVANCED_REBOOT, OMNI_ADVANCED_REBOOT_VALIDATOR);
         }
 
         /**
