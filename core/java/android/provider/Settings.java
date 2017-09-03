@@ -10311,6 +10311,19 @@ public final class Settings {
         private static final Validator HIDE_LOCKICON_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
+         * Whether the torch launch gesture to double tap or long press the power button when the
+         * screen is off should be enabled.
+         *
+         * 0: disabled
+         * 1: double tap power for torch
+         * 2: long tap power for torch
+         * @hide
+         */
+        public static final String TORCH_POWER_BUTTON_GESTURE = "torch_power_button_gesture";
+
+        private static final Validator TORCH_POWER_BUTTON_GESTURE_VALIDATOR = NON_NEGATIVE_INTEGER_VALIDATOR;
+
+        /**
          * This are the settings to be backed up.
          *
          * NOTE: Settings are backed up and restored in the order they appear
@@ -10455,6 +10468,7 @@ public final class Settings {
             AWARE_LOCK_ENABLED,
             LOCKSCREEN_VISUALIZER_ENABLED,
             HIDE_LOCKICON,
+            TORCH_POWER_BUTTON_GESTURE
         };
 
         /**
@@ -10653,6 +10667,7 @@ public final class Settings {
             VALIDATORS.put(AWARE_LOCK_ENABLED, AWARE_LOCK_ENABLED_VALIDATOR);
             VALIDATORS.put(LOCKSCREEN_VISUALIZER_ENABLED, LOCKSCREEN_VISUALIZER_ENABLED_VALIDATOR);
             VALIDATORS.put(HIDE_LOCKICON, HIDE_LOCKICON_VALIDATOR);
+            VALIDATORS.put(TORCH_POWER_BUTTON_GESTURE, TORCH_POWER_BUTTON_GESTURE_VALIDATOR);
         }
 
         /**
