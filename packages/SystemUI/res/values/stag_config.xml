@@ -27,4 +27,7 @@
     <!-- Whether the qs statusbar is hidden -->
     <bool name="qs_status_bar_hidden">false</bool>
 
+    <!-- CPUInfoService temperature sysfs path -->
+    <string name="config_cpuinfoSysTemp" translatable="false"></string>
+
 </resources>

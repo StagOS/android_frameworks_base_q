@@ -15215,11 +15215,11 @@ public final class Settings {
 
         private static final Validator LOCKSCREEN_ENABLE_POWER_MENU_VALIDATOR = BOOLEAN_VALIDATOR;
 
-        /**  
+        /**
          * AOKP Custom System Animations
          * @hide
-         */  
-        public static final String[] ACTIVITY_ANIMATION_CONTROLS = new String[] {  
+         */
+        public static final String[] ACTIVITY_ANIMATION_CONTROLS = new String[] {
                 "activity_open",
                 "activity_close",
                 "task_open",
@@ -15231,8 +15231,13 @@ public final class Settings {
                 "wallpaper_intra_open",
                 "wallpaper_intra_close",
                 "task_open_behind",
-        };  
+        };
         public static final String ANIMATION_CONTROLS_DURATION = "animation_controls_duration";
+
+        /**
+         * @hide
+         */
+        public static final String SHOW_CPU_OVERLAY = "show_cpu_overlay";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
