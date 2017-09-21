@@ -170,4 +170,7 @@
   <java-symbol type="anim" name="ethans_launch_task_behind_source" />
   <java-symbol type="anim" name="ethans_launch_task_behind_target" />
 
+  <!-- HW keys binding -->
+  <java-symbol type="anim" name="custom_app_in" />
+  <java-symbol type="anim" name="custom_app_out" />
 </resources>
