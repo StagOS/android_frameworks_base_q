@@ -152,6 +152,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
         addQSPanel();
 
         mBrightnessController = new BrightnessController(getContext(),
+                findViewById(R.id.brightness_icon),
                 findViewById(R.id.brightness_slider));
         mDumpController = dumpController;
 
@@ -183,6 +184,8 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
         if (mBrightnessView != null) removeView(mBrightnessView);
 
         addQSPanel();
+=======
+>>>>>>> a1e195fa43d... SystemUI: Port brightness slider changes
     }
 
     protected void addDivider() {
@@ -229,7 +232,6 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
         tunerService.addTunable(this, QS_SHOW_AUTO_BRIGHTNESS);
         tunerService.addTunable(this, QS_SHOW_BRIGHTNESS_SLIDER);
         tunerService.addTunable(this, QS_SHOW_SECURITY);
-
         if (mHost != null) {
             setTiles(mHost.getTiles());
         }
@@ -265,6 +267,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
         if (QS_SHOW_AUTO_BRIGHTNESS.equals(key) && mIsAutomaticBrightnessAvailable) {
             updateViewVisibilityForTuningValue(mBrightnessIconView, newValue);
             updateViewVisibilityForTuningValue(mAutoBrightnessView, newValue);
+	    mAutoBrightnessView.setVisibility(TunerService.parseIntegerSwitch(newValue, true) ? VISIBLE : GONE);
         } else if (QS_SHOW_BRIGHTNESS_SLIDER.equals(key)) {
             mBrightnessSlider = TunerService.parseInteger(newValue, 1);
             mBrightnessView.setVisibility(mBrightnessSlider != 0 ? VISIBLE : GONE);
