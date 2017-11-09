@@ -60,6 +60,7 @@ import com.android.systemui.qs.tiles.UiModeNightTile;
 import com.android.systemui.qs.tiles.SoundTile;
 import com.android.systemui.qs.tiles.ScreenRecordTile;
 import com.android.systemui.qs.tiles.ScreenshotTile;
+import com.android.systemui.qs.tiles.ScreenStabilizationTile;
 import com.android.systemui.qs.tiles.UsbTetherTile;
 import com.android.systemui.qs.tiles.UserTile;
 import com.android.systemui.qs.tiles.VolumeTile;
@@ -112,6 +113,7 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<VolumeTile> mVolumeTileProvider;
     private final Provider<HornsTile> mHornsTileProvider;
     private final Provider<ImmersiveTile> mImmersiveTileProvider;
+    private final Provider<ScreenStabilizationTile> mScreenStabilizationTileProvider;
 
     private QSTileHost mHost;
 
@@ -151,7 +153,8 @@ public class QSFactoryImpl implements QSFactory {
             Provider<FPSInfoTile> fpsInfoTileProvider,
             Provider<VolumeTile> volumeTileProvider,
             Provider<HornsTile> hornsTileProvider,
-            Provider<ImmersiveTile> immersiveTileProvider) {
+            Provider<ImmersiveTile> immersiveTileProvider,
+            Provider<ScreenStabilizationTile> screenStabilizationTileProvider) {
         mWifiTileProvider = wifiTileProvider;
         mBluetoothTileProvider = bluetoothTileProvider;
         mCellularTileProvider = cellularTileProvider;
@@ -188,6 +191,7 @@ public class QSFactoryImpl implements QSFactory {
         mVolumeTileProvider = volumeTileProvider;
         mHornsTileProvider = hornsTileProvider;
         mImmersiveTileProvider = immersiveTileProvider;
+        mScreenStabilizationTileProvider = screenStabilizationTileProvider;
     }
 
     public void setHost(QSTileHost host) {
@@ -279,6 +283,8 @@ public class QSFactoryImpl implements QSFactory {
                 return mHornsTileProvider.get();
             case "immersive":
                 return mImmersiveTileProvider.get();
+            case "screenstabilization":
+                return mScreenStabilizationTileProvider.get();
         }
 
         // Intent tiles.
