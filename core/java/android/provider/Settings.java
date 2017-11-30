@@ -5564,6 +5564,12 @@ public final class Settings {
         public static final String DEVICE_FEATURE_SETTINGS = "device_feature_settings";
 
         /**
+         * Whether the haptic feedback on action instead of touch
+         * @hide
+         */
+        public static final String HAPTIC_ON_ACTION_KEY = "haptic_on_action_key";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
