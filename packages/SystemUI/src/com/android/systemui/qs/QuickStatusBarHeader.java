@@ -695,9 +695,6 @@ public class QuickStatusBarHeader extends RelativeLayout implements
                 android.R.attr.colorForeground);
         float intensity = getColorIntensity(colorForeground);
         int fillColor = mDualToneHandler.getSingleColor(intensity);
-        if(mSystemInfoText != null &&  mSystemInfoIcon != null) {
-            updateSystemInfoText();
-        }
     }
 
     public void setCallback(Callback qsPanelCallback) {

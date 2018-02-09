@@ -247,4 +247,6 @@
     <string name="stabilization_velocity_amplitude">Velocity Amplitude</string>
     <string name="stabilization_position_friction">Position Friction</string>
 
+    <!-- Sound Search tile -->
+    <string name="quick_settings_sound_search">Sound search</string>
 </resources>
