@@ -18,6 +18,16 @@
     xmlns:sysui="http://schemas.android.com/apk/res-auto"
     android:title="@string/statusbar_items_title">
 
+    <com.android.systemui.tuner.TunerSwitch
+        android:key="qs_show_brightness"
+        android:title="@string/tuner_show_brightness_new"
+        sysui:defValue="true" />
+
+    <com.android.systemui.tuner.TunerSwitch
+        android:key="qs_brightness_position_bottom"
+        android:title="@string/tuner_brightness_position_bottom"
+        sysui:defValue="false" />
+
     <com.android.systemui.tuner.StatusBarSwitch
         android:key="airplane"
         android:title="@string/status_bar_airplane" />
