@@ -50,6 +50,7 @@ import com.android.systemui.qs.tiles.NfcTile;
 import com.android.systemui.qs.tiles.NightDisplayTile;
 import com.android.systemui.qs.tiles.RebootTile;
 import com.android.systemui.qs.tiles.RotationLockTile;
+import com.android.systemui.qs.tiles.SmartPixelsTile;
 import com.android.systemui.qs.tiles.SyncTile;
 import com.android.systemui.qs.tiles.UiModeNightTile;
 import com.android.systemui.qs.tiles.SoundTile;
@@ -101,6 +102,7 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<CPUInfoTile> mCPUInfoTileProvider;
     private final Provider<HWKeysTile> mHWKeysTileProvider;
     private final Provider<ScreenRecordTile> mScreenRecordTileProvider;
+    private final Provider<SmartPixelsTile> mSmartPixelsTileProvider;
 
     private QSTileHost mHost;
 
@@ -135,7 +137,8 @@ public class QSFactoryImpl implements QSFactory {
             Provider<UsbTetherTile> usbTetherTileProvider,
             Provider<CPUInfoTile> cpuInfoTileProvider,
             Provider<HWKeysTile> hWKeysTileProvider,
-            Provider<ScreenRecordTile> screenRecordTileProvider) {
+            Provider<ScreenRecordTile> screenRecordTileProvider,
+            Provider<SmartPixelsTile> smartPixelsTileProvider) {
         mWifiTileProvider = wifiTileProvider;
         mBluetoothTileProvider = bluetoothTileProvider;
         mCellularTileProvider = cellularTileProvider;
@@ -167,6 +170,7 @@ public class QSFactoryImpl implements QSFactory {
         mCPUInfoTileProvider = cpuInfoTileProvider;
         mHWKeysTileProvider = hWKeysTileProvider;
         mScreenRecordTileProvider = screenRecordTileProvider;
+        mSmartPixelsTileProvider = smartPixelsTileProvider;
     }
 
     public void setHost(QSTileHost host) {
@@ -248,6 +252,8 @@ public class QSFactoryImpl implements QSFactory {
                 return mHWKeysTileProvider.get();
             case "screenrecord":
                 return mScreenRecordTileProvider.get();
+            case "smartpixels":
+                return mSmartPixelsTileProvider.get();
         }
 
         // Intent tiles.
