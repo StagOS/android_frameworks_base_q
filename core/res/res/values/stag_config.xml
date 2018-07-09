@@ -116,6 +116,6 @@
     <string name="animation_ethans">Ethans</string>
 
     <!-- Component name of the combo network location provider. -->
-    <string name="config_comboNetworkLocationProvider" translatable="false">com.qualcomm.location</string>
+    <string name="config_comboNetworkLocationProvider" translatable="false">@null</string>
 
 </resources>
