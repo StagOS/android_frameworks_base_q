@@ -5608,6 +5608,15 @@ public final class Settings {
         /**
          * @hide
          */
+        public static final String FORCE_SHOW_NAVBAR = "navigation_bar_show_new";
+
+        /** @hide */
+        private static final Validator FORCE_SHOW_NAVBAR_VALIDATOR =
+                ANY_INTEGER_VALIDATOR;
+
+        /**
+         * @hide
+         */
         public static final String OMNI_QS_LAYOUT_ROWS = "qs_layout_rows";
 
         /** @hide */
@@ -5691,15 +5700,6 @@ public final class Settings {
 
         /** @hide */
         private static final Validator SCREEN_OFF_ANIMATION_VALIDATOR = ANY_INTEGER_VALIDATOR;
-
-        /**
-         * Force show navigation bar setting.
-         * @hide
-         */
-        public static final String FORCE_SHOW_NAVBAR = "force_show_navbar";
-
-         /** @hide */
-        public static final Validator FORCE_SHOW_NAVBAR_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
          * Indicates whether ANBI (Accidental navigation button interaction) is enabled.
@@ -6464,6 +6464,7 @@ public final class Settings {
             WIRELESS_CHARGING_ANIMATION,
             ACCENT_COLOR,
             POWERMENU_BLUR,
+            FORCE_SHOW_NAVBAR,
         };
 
         /**
@@ -6698,6 +6699,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SYSTEMUI_PLUGIN_VOLUME);
             PRIVATE_SETTINGS.add(FOD_GESTURE);
             PRIVATE_SETTINGS.add(POWERMENU_BLUR);
+            PRIVATE_SETTINGS.add(FORCE_SHOW_NAVBAR);
        }
 
         /**
@@ -6903,6 +6905,7 @@ public final class Settings {
             VALIDATORS.put(ACCENT_COLOR, ACCENT_COLOR_VALIDATOR);
             VALIDATORS.put(FOD_GESTURE, FOD_GESTURE_VALIDATOR);
             VALIDATORS.put(POWERMENU_BLUR, POWERMENU_BLUR_VALIDATOR);
+            VALIDATORS.put(FORCE_SHOW_NAVBAR, FORCE_SHOW_NAVBAR_VALIDATOR);
 	}
 
         /**
