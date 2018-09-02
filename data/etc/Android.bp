@@ -133,3 +133,9 @@ prebuilt_etc {
     sub_dir: "permissions",
     src: "com.android.timezone.updater.xml",
 }
+
+prebuilt_etc {
+    name: "substratum-sysconfig.xml",
+    sub_dir: "sysconfig",
+    src: "substratum-sysconfig.xml",
+}
