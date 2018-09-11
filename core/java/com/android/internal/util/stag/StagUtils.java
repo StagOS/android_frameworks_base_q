@@ -19,12 +19,15 @@ package com.android.internal.util.stag;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.os.Handler;
 import android.os.PowerManager;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemClock;
 import android.os.UserHandle;
+
+import java.util.Locale;
 
 import com.android.internal.statusbar.IStatusBarService;
 
@@ -97,4 +100,9 @@ public class StagUtils {
         context.sendBroadcastAsUser(keyguardIntent, user);
     }
 
+    // Check for Chinese language
+    public static boolean isChineseLanguage() {
+       return Resources.getSystem().getConfiguration().locale.getLanguage().startsWith(
+               Locale.CHINESE.getLanguage());
+    }
 }
