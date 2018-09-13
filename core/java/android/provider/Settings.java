@@ -4560,6 +4560,15 @@ public final class Settings {
                 ANY_INTEGER_VALIDATOR;
 
         /**
+         * @hide
+         */
+        public static final String OMNI_USE_OLD_MOBILETYPE = "use_old_mobiletype";
+
+        /** @hide */
+        private static final Validator OMNI_USE_OLD_MOBILETYPE_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
          * IMPORTANT: If you add a new public settings you also have to add it to
          * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
          * it to PRIVATE_SETTINGS below. Also add a validator that can validate
@@ -4887,6 +4896,7 @@ public final class Settings {
             HEADS_UP_BLACKLIST_VALUES,
             OMNI_ADVANCED_REBOOT,
             OMNI_QS_PANEL_BG_ALPHA,
+            OMNI_USE_OLD_MOBILETYPE,
             OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE,
             OMNI_QS_LAYOUT_COLUMNS,
             OMNI_QS_TILE_TITLE_VISIBILITY,
@@ -5043,6 +5053,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(HEADS_UP_BLACKLIST_VALUES);
             PRIVATE_SETTINGS.add(OMNI_ADVANCED_REBOOT);
             PRIVATE_SETTINGS.add(OMNI_QS_PANEL_BG_ALPHA);
+            PRIVATE_SETTINGS.add(OMNI_USE_OLD_MOBILETYPE);
             PRIVATE_SETTINGS.add(OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE);
             PRIVATE_SETTINGS.add(OMNI_QS_LAYOUT_COLUMNS);
             PRIVATE_SETTINGS.add(OMNI_QS_TILE_TITLE_VISIBILITY);
@@ -5164,6 +5175,7 @@ public final class Settings {
             VALIDATORS.put(HEADS_UP_BLACKLIST_VALUES, HEADS_UP_BLACKLIST_VALUES_VALIDATOR);
             VALIDATORS.put(OMNI_ADVANCED_REBOOT, OMNI_ADVANCED_REBOOT_VALIDATOR);
             VALIDATORS.put(OMNI_QS_PANEL_BG_ALPHA, OMNI_QS_PANEL_BG_ALPHA_VALIDATOR);
+            VALIDATORS.put(OMNI_USE_OLD_MOBILETYPE, OMNI_USE_OLD_MOBILETYPE_VALIDATOR);
             VALIDATORS.put(OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE,
                     OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE_VALIDATOR);
             VALIDATORS.put(OMNI_QS_LAYOUT_COLUMNS, OMNI_QS_LAYOUT_COLUMNS_VALIDATOR);
