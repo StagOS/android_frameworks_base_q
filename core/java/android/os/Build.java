@@ -1002,6 +1002,19 @@ public class Build {
     public static final String FINGERPRINT = deriveFingerprint();
 
     /**
+     * Stag fingerprint
+     * @hide
+     */
+    public static final String PROP_STAG_FINGERPRINT = "org.stag.fingerprint";
+
+    /**
+     * STAG fingerprint
+     * @hide
+     */
+    public static final String STAG_FINGERPRINT = SystemProperties.get(PROP_STAG_FINGERPRINT,
+            deriveFingerprint());
+
+    /**
      * Some devices split the fingerprint components between multiple
      * partitions, so we might derive the fingerprint at runtime.
      */
