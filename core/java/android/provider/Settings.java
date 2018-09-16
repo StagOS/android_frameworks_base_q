@@ -6160,6 +6160,23 @@ public final class Settings {
         public static final String LONG_BACK_SWIPE_TIMEOUT = "long_back_swipe_timeout";
 
         /**
+         * enable custom lockscreen max notifications config
+         * @hide
+         */
+        public static final String LOCK_SCREEN_CUSTOM_NOTIF = "lock_screen_custom_notif";
+        /** @hide */
+        private static final Validator LOCK_SCREEN_CUSTOM_NOTIF_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
+         * custom lockscreen max notification config
+         * @hide
+         */
+        public static final String LOCKSCREEN_MAX_NOTIF_CONFIG = "lockscreen_max_notif_config";
+        /** @hide */
+        private static final Validator LOCKSCREEN_MAX_NOTIF_CONFIG_VALIDATOR =
+                new SettingsValidators.InclusiveIntegerRangeValidator(1, 3);
+
+        /**
          * Gestures nav: whether to use extended swipe instead of timeout to trigger custom actions
          * @hide
          */
@@ -6355,6 +6372,8 @@ public final class Settings {
             QS_PANEL_BG_USE_NEW_TINT,
             NOTIFICATION_HEADERS,
             STATUS_BAR_CUSTOM_HEADER_HEIGHT,
+            LOCK_SCREEN_CUSTOM_NOTIF,
+            LOCKSCREEN_MAX_NOTIF_CONFIG,
         };
 
         /**
@@ -6580,6 +6599,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(QS_PANEL_BG_USE_NEW_TINT);
             PRIVATE_SETTINGS.add(STATUS_BAR_CUSTOM_HEADER_HEIGHT);
             PRIVATE_SETTINGS.add(DISPLAY_CUTOUT_HIDDEN);
+            PRIVATE_SETTINGS.add(LOCK_SCREEN_CUSTOM_NOTIF);
+            PRIVATE_SETTINGS.add(LOCKSCREEN_MAX_NOTIF_CONFIG);
         }
 
         /**
@@ -6777,6 +6798,8 @@ public final class Settings {
             VALIDATORS.put(NOTIFICATION_HEADERS, NOTIFICATION_HEADERS_VALIDATOR);
             VALIDATORS.put(STATUS_BAR_CUSTOM_HEADER_HEIGHT, STATUS_BAR_CUSTOM_HEADER_HEIGHT_VALIDATOR);
             VALIDATORS.put(DISPLAY_CUTOUT_HIDDEN, DISPLAY_CUTOUT_HIDDEN_VALIDATOR);
+            VALIDATORS.put(LOCK_SCREEN_CUSTOM_NOTIF, LOCK_SCREEN_CUSTOM_NOTIF_VALIDATOR);
+            VALIDATORS.put(LOCKSCREEN_MAX_NOTIF_CONFIG, LOCKSCREEN_MAX_NOTIF_CONFIG_VALIDATOR);
         }
 
         /**
