@@ -5222,7 +5222,6 @@ public final class Settings {
          */
         public static final String GAMING_MODE_ACTIVE = "gaming_mode_active";
 
-
         /**
          * Package name of apps for enabling Gaming mode
          * @hide
@@ -6239,6 +6238,19 @@ public final class Settings {
         public static final String STABILIZATION_VELOCITY_AMPLITUDE = "stabilization_velocity_amplitude";
 
         /**
+         * 0 - Default
+         * 1 - Round with ring
+         * 2 - Two-toned round with ring
+         * 3 - Squircle with ring
+         * @hide
+         */
+        public static final String QS_TILE_STYLE = "qs_tile_style";
+
+        /** @hide */
+        private static final Validator QS_TILE_STYLE_VALIDATOR =
+                ANY_INTEGER_VALIDATOR;
+
+        /**
          * Accent Color
          * @hide
          */
@@ -6404,6 +6416,7 @@ public final class Settings {
             HIDE_SMART_REPLIES,
             QS_PANEL_BG_USE_NEW_TINT,
             NOTIFICATION_HEADERS,
+            QS_TILE_STYLE,
             STATUS_BAR_CUSTOM_HEADER_HEIGHT,
             LOCK_SCREEN_CUSTOM_NOTIF,
             LOCKSCREEN_MAX_NOTIF_CONFIG,
@@ -6632,6 +6645,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(QS_BLUR);
             PRIVATE_SETTINGS.add(HIDE_SMART_REPLIES);
             PRIVATE_SETTINGS.add(QS_PANEL_BG_USE_NEW_TINT);
+            PRIVATE_SETTINGS.add(QS_TILE_STYLE);
             PRIVATE_SETTINGS.add(STATUS_BAR_CUSTOM_HEADER_HEIGHT);
             PRIVATE_SETTINGS.add(DISPLAY_CUTOUT_HIDDEN);
             PRIVATE_SETTINGS.add(LOCK_SCREEN_CUSTOM_NOTIF);
@@ -6833,6 +6847,7 @@ public final class Settings {
             VALIDATORS.put(HIDE_SMART_REPLIES, HIDE_SMART_REPLIES_VALIDATOR);
             VALIDATORS.put(QS_PANEL_BG_USE_NEW_TINT, QS_PANEL_BG_USE_NEW_TINT_VALIDATOR);
             VALIDATORS.put(NOTIFICATION_HEADERS, NOTIFICATION_HEADERS_VALIDATOR);
+            VALIDATORS.put(QS_TILE_STYLE, QS_TILE_STYLE_VALIDATOR);
             VALIDATORS.put(STATUS_BAR_CUSTOM_HEADER_HEIGHT, STATUS_BAR_CUSTOM_HEADER_HEIGHT_VALIDATOR);
             VALIDATORS.put(DISPLAY_CUTOUT_HIDDEN, DISPLAY_CUTOUT_HIDDEN_VALIDATOR);
             VALIDATORS.put(LOCK_SCREEN_CUSTOM_NOTIF, LOCK_SCREEN_CUSTOM_NOTIF_VALIDATOR);
