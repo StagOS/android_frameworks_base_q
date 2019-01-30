@@ -154,6 +154,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
 
     private boolean mLandscape;
     private boolean mHeaderImageEnabled;
+    private boolean mForceHideQsStatusBar;
 
     private final BroadcastReceiver mRingerReceiver = new BroadcastReceiver() {
         @Override
@@ -229,7 +230,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         mPrivacyChip = findViewById(R.id.privacy_chip);
         mPrivacyChip.setOnClickListener(this::onClick);
         mCarrierGroup = findViewById(R.id.carrier_group);
-
+        mForceHideQsStatusBar = mContext.getResources().getBoolean(R.bool.qs_status_bar_hidden);
 
         updateResources();
 
@@ -720,7 +721,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
 
     // Update color schemes in landscape to use wallpaperTextColor
     private void updateStatusbarProperties() {
-        boolean shouldUseWallpaperTextColor = mLandscape && !mHeaderImageEnabled;
+        boolean shouldUseWallpaperTextColor = (mLandscape || mForceHideQsStatusBar) && !mHeaderImageEnabled;
         mClockView.useWallpaperTextColor(shouldUseWallpaperTextColor);
     }
 }
