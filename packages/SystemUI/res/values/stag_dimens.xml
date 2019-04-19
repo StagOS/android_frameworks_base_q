@@ -24,6 +24,9 @@
 
     <dimen name="qs_tile_height_wo_label">48dp</dimen>
 
+    <!-- Padding needed on bottom of lockscreen for FoD devices -->
+    <dimen name="op_keyguard_indication_margin_bottom">415.0px</dimen>
+
     <dimen name="battery_bar_view_height">6dp</dimen>
 
     <!-- Custom Carrier Label -->
