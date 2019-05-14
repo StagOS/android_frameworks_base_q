@@ -1144,10 +1144,10 @@ public class LockSettingsService extends ILockSettings.Stub {
         return mStorage.hasCredential(userId);
     }
 
-    public void retainPassword(byte[] password) {
+    public void retainPassword(String password) {
         if (LockPatternUtils.isDeviceEncryptionEnabled()) {
             if (password != null)
-                mSavePassword = new String(password);
+                mSavePassword = password;
             else
                 mSavePassword = DEFAULT_PASSWORD;
         }
@@ -1853,7 +1853,7 @@ public class LockSettingsService extends ILockSettings.Stub {
                                         CHALLENGE_NONE, 0, userId, progressCallback);
         if ((response.getResponseCode() == VerifyCredentialResponse.RESPONSE_OK) &&
                                            (userId == UserHandle.USER_OWNER)) {
-                //TODO(b/127810705): Update to credentials to use byte[]
+               //TODO(b/127810705): Update to credentials to use byte[]
                 String credentialString = credential == null ? null : new String(credential);
                 retainPassword(credentialString);
         }
@@ -3239,3 +3239,4 @@ public class LockSettingsService extends ILockSettings.Stub {
         }
     }
 }
+
