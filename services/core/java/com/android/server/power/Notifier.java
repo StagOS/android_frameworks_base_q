@@ -819,11 +819,14 @@ public class Notifier {
         mSuspendBlocker.release();
     }
 
-    private void showWiredChargingStarted(@UserIdInt int userId, int batteryLevel) {
+    private void showWiredChargingStarted(@UserIdInt int userId,int batteryLevel) {
+        final boolean animationEnabled = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.CHARGING_ANIMATION, 1) == 1;
+        playChargingStartedVibration(userId);
         playChargingStartedFeedback(userId);
-        if (mStatusBarManagerInternal != null) {
-	    mStatusBarManagerInternal.showChargingAnimation(batteryLevel);
-        }
+        if (mStatusBarManagerInternal != null && animationEnabled) {
+            mStatusBarManagerInternal.showChargingAnimation(batteryLevel);
+	}
         mSuspendBlocker.release();
     }
 
