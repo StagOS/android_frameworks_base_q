@@ -6208,11 +6208,21 @@ public final class Settings {
          */
         public static final String AUTO_ANSWER_CALL_KEY = "auto_answer_call_key";
 
-        /**
-         * Whether to show charging animation
+	/**
+         * Whether to show wireless charging animation
          * @hide
          */
-        public static final String CHARGING_ANIMATION = "charging_animation";
+        public static final String WIRELESS_CHARGING_ANIMATION = "wireless_charging_animation";
+
+        /** @hide */
+        private static final Validator WIRELESS_CHARGING_ANIMATION_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
+         * Enable\Disable Bluetooth Battery bar in quick settings
+         * @hide
+         */
+        public static final String BLUETOOTH_QS_SHOW_BATTERY = "bluetooth_qs_show_battery";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
@@ -6374,6 +6384,7 @@ public final class Settings {
             STATUS_BAR_CUSTOM_HEADER_HEIGHT,
             LOCK_SCREEN_CUSTOM_NOTIF,
             LOCKSCREEN_MAX_NOTIF_CONFIG,
+            WIRELESS_CHARGING_ANIMATION,
         };
 
         /**
@@ -6601,6 +6612,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(DISPLAY_CUTOUT_HIDDEN);
             PRIVATE_SETTINGS.add(LOCK_SCREEN_CUSTOM_NOTIF);
             PRIVATE_SETTINGS.add(LOCKSCREEN_MAX_NOTIF_CONFIG);
+            PRIVATE_SETTINGS.add(WIRELESS_CHARGING_ANIMATION);
         }
 
         /**
@@ -6800,6 +6812,7 @@ public final class Settings {
             VALIDATORS.put(DISPLAY_CUTOUT_HIDDEN, DISPLAY_CUTOUT_HIDDEN_VALIDATOR);
             VALIDATORS.put(LOCK_SCREEN_CUSTOM_NOTIF, LOCK_SCREEN_CUSTOM_NOTIF_VALIDATOR);
             VALIDATORS.put(LOCKSCREEN_MAX_NOTIF_CONFIG, LOCKSCREEN_MAX_NOTIF_CONFIG_VALIDATOR);
+            VALIDATORS.put(WIRELESS_CHARGING_ANIMATION, WIRELESS_CHARGING_ANIMATION_VALIDATOR);
         }
 
         /**
