@@ -3005,7 +3005,7 @@ public final class Settings {
                 int userHandle, boolean updateSettingsIfEmpty) {
             outConfig.fontScale = Settings.System.getFloatForUser(
                     cr, FONT_SCALE, DEFAULT_FONT_SCALE, userHandle);
-j            if (outConfig.fontScale < 0) {
+            if (outConfig.fontScale < 0) {
                 outConfig.fontScale = DEFAULT_FONT_SCALE;
             }
 
