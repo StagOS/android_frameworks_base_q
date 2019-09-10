@@ -3137,6 +3137,9 @@
   <!-- Package name for the device provisioning package -->
   <java-symbol type="string" name="config_deviceProvisioningPackage" />
 
+  <!-- Post reset runnable for all clients -->
+  <java-symbol type="bool" name="config_fingerprintPostResetRunnableForAllClients" />
+
   <!-- Colon separated list of package names that should be granted DND access -->
   <java-symbol type="string" name="config_defaultDndAccessPackages" />
 
