@@ -24,7 +24,6 @@ import android.app.AlarmManager;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.ColorStateList;
@@ -79,6 +78,7 @@ import com.android.systemui.statusbar.phone.StatusBarIconController.TintedIconMa
 import com.android.systemui.statusbar.phone.StatusIconContainer;
 import com.android.systemui.statusbar.policy.Clock;
 import com.android.systemui.statusbar.policy.DateView;
+import com.android.systemui.statusbar.policy.NetworkTraffic;
 import com.android.systemui.statusbar.policy.NextAlarmController;
 import com.android.systemui.statusbar.policy.ZenModeController;
 
@@ -145,6 +145,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     private View mRingerContainer;
     private Clock mClockView;
     private DateView mDateView;
+    private NetworkTraffic mTraffic;
     private OngoingPrivacyChip mPrivacyChip;
     private Space mSpace;
     private BatteryMeterView mBatteryRemainingIcon;
@@ -257,6 +258,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         mClockView.setQsHeader();
         mDateView = findViewById(R.id.date);
         mSpace = findViewById(R.id.space);
+        mTraffic = findViewById(R.id.networkTraffic);
 
         // Tint for the battery icons are handled in setupHost()
         mBatteryRemainingIcon = findViewById(R.id.batteryRemainingIcon);
@@ -366,6 +368,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     protected void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         mLandscape = newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE;
+        mTraffic.useWallpaperTextColor(mLandscape);
         updateResources();
 
         // Update color schemes in landscape to use wallpaperTextColor
