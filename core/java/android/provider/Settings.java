@@ -5470,6 +5470,25 @@ public final class Settings {
                 BOOLEAN_VALIDATOR;
 
         /**
+         * Show Settings icon in QS Footer
+         *
+         * @hide
+         */
+        public static final String QSFOOTER_SHOW_SETTINGS = "qs_footer_show_settings";
+
+        /** @hide */
+        private static final Validator QSFOOTER_SHOW_SETTINGS_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
+         * Whether to show or hide the edit icon
+         * @hide
+         */
+        public static final String QS_EDIT_TOGGLE = "qs_edit_toggle";
+
+        /** @hide */
+        private static final Validator QS_EDIT_TOGGLE_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -5594,6 +5613,8 @@ public final class Settings {
             FINGERPRINT_SUCCESS_VIB,
             FINGERPRINT_ERROR_VIB,
             POWERMENU_TORCH,
+            QSFOOTER_SHOW_SETTINGS,
+            QS_EDIT_TOGGLE,
         };
 
         /**
@@ -5778,6 +5799,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(FINGERPRINT_SUCCESS_VIB);
             PRIVATE_SETTINGS.add(FINGERPRINT_ERROR_VIB);
             PRIVATE_SETTINGS.add(POWERMENU_TORCH);
+            PRIVATE_SETTINGS.add(QSFOOTER_SHOW_SETTINGS);
+            PRIVATE_SETTINGS.add(QS_EDIT_TOGGLE);
         }
 
 
@@ -5940,6 +5963,8 @@ public final class Settings {
             VALIDATORS.put(FINGERPRINT_SUCCESS_VIB, FINGERPRINT_SUCCESS_VIB_VALIDATOR);
             VALIDATORS.put(FINGERPRINT_ERROR_VIB, FINGERPRINT_ERROR_VIB_VALIDATOR);
             VALIDATORS.put(POWERMENU_TORCH, POWERMENU_TORCH_VALIDATOR);
+            VALIDATORS.put(QSFOOTER_SHOW_SETTINGS, QSFOOTER_SHOW_SETTINGS_VALIDATOR);
+            VALIDATORS.put(QS_EDIT_TOGGLE, QS_EDIT_TOGGLE_VALIDATOR);
         }
 
         /**

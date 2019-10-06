@@ -34,6 +34,7 @@ import android.os.Handler;
 import android.os.UserHandle;
 import android.os.UserManager;
 import android.provider.Settings;
+import android.provider.Settings;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -64,14 +65,17 @@ import com.android.systemui.statusbar.policy.DeviceProvisionedController;
 import com.android.systemui.statusbar.policy.UserInfoController;
 import com.android.systemui.statusbar.policy.UserInfoController.OnUserInfoChangedListener;
 import com.android.systemui.tuner.TunerService;
+import com.android.systemui.tuner.TunerService.Tunable;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
-public class QSFooterImpl extends FrameLayout implements QSFooter,
+public class QSFooterImpl extends FrameLayout implements Tunable, QSFooter,
         OnClickListener, OnLongClickListener, OnUserInfoChangedListener {
 
     private static final String TAG = "QSFooterImpl";
+
+    private static final String QS_FOOTER_SHOW_SETTINGS = "qs_footer_show_settings";
 
     private final ActivityStarter mActivityStarter;
     private final UserInfoController mUserInfoController;
@@ -151,6 +155,8 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
         mActionsContainer = findViewById(R.id.qs_footer_actions_container);
         mEditContainer = findViewById(R.id.qs_footer_actions_edit_container);
 
+        updateVisibilities();
+
         // RenderThread is doing more harm than good when touching the header (to expand quick
         // settings), so disable it for this view
         ((RippleDrawable) mSettingsButton.getBackground()).setForceSoftware(true);
@@ -176,6 +182,10 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
         } else {
             v.setVisibility(View.GONE);
         }*/
+    }
+
+    public void onTuningChanged(String key, String newValue) {
+        updateVisibilities();
     }
 
     private void updateAnimator(int width) {
@@ -255,6 +265,7 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
+        Dependency.get(TunerService.class).addTunable(this, QS_FOOTER_SHOW_SETTINGS);
         /*mContext.getContentResolver().registerContentObserver(
                 Settings.Global.getUriFor(Settings.Global.DEVELOPMENT_SETTINGS_ENABLED), false,
                 mDeveloperSettingsObserver, UserHandle.USER_ALL);*/
@@ -264,6 +275,7 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
     @VisibleForTesting
     public void onDetachedFromWindow() {
         setListening(false);
+        Dependency.get(TunerService.class).removeTunable(this);
         //mContext.getContentResolver().unregisterContentObserver(mDeveloperSettingsObserver);
         super.onDetachedFromWindow();
     }
@@ -321,9 +333,11 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
         mSettingsContainer.findViewById(R.id.tuner_icon).setVisibility(
                 TunerService.isTunerEnabled(mContext) ? View.VISIBLE : View.INVISIBLE);
         final boolean isDemo = UserManager.isDeviceInDemoMode(mContext);
+        boolean settingsButtonVisible = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.QSFOOTER_SHOW_SETTINGS, 1) != 0;
         mMultiUserSwitch.setVisibility(showUserSwitcher() ? View.VISIBLE : View.INVISIBLE);
-        mEditContainer.setVisibility(isDemo || !mExpanded ? View.INVISIBLE : View.VISIBLE);
-        mSettingsButton.setVisibility(isDemo || !mExpanded ? View.INVISIBLE : View.VISIBLE);
+        mEditContainer.setVisibility(isEditEnabled() ? isDemo || !mExpanded ? View.INVISIBLE : View.VISIBLE : View.INVISIBLE);
+        mSettingsButton.setVisibility(isDemo || settingsButtonVisible ? View.VISIBLE : View.GONE);
     }
 
     private boolean showUserSwitcher() {
@@ -345,6 +359,11 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
             mMultiUserSwitch.setQsPanel(qsPanel);
             mQsPanel.setFooterPageIndicator(mPageIndicator);
         }
+    }
+
+    public boolean isEditEnabled() {
+        return Settings.System.getInt(mContext.getContentResolver(),
+            Settings.System.QS_EDIT_TOGGLE, 1) == 1;
     }
 
     @Override
