@@ -5489,6 +5489,15 @@ public final class Settings {
         private static final Validator QS_EDIT_TOGGLE_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
+         * Whether to show media art on lockscreen
+         * @hide
+         */
+        public static final String LOCKSCREEN_MEDIA_METADATA = "lockscreen_media_metadata";
+
+        /** @hide */
+        private static final Validator LOCKSCREEN_MEDIA_METADATA_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -5615,6 +5624,7 @@ public final class Settings {
             POWERMENU_TORCH,
             QSFOOTER_SHOW_SETTINGS,
             QS_EDIT_TOGGLE,
+            LOCKSCREEN_MEDIA_METADATA,
         };
 
         /**
@@ -5801,6 +5811,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(POWERMENU_TORCH);
             PRIVATE_SETTINGS.add(QSFOOTER_SHOW_SETTINGS);
             PRIVATE_SETTINGS.add(QS_EDIT_TOGGLE);
+            PRIVATE_SETTINGS.add(LOCKSCREEN_MEDIA_METADATA);
         }
 
 
@@ -5965,6 +5976,7 @@ public final class Settings {
             VALIDATORS.put(POWERMENU_TORCH, POWERMENU_TORCH_VALIDATOR);
             VALIDATORS.put(QSFOOTER_SHOW_SETTINGS, QSFOOTER_SHOW_SETTINGS_VALIDATOR);
             VALIDATORS.put(QS_EDIT_TOGGLE, QS_EDIT_TOGGLE_VALIDATOR);
+            VALIDATORS.put(LOCKSCREEN_MEDIA_METADATA, LOCKSCREEN_MEDIA_METADATA_VALIDATOR);
         }
 
         /**
