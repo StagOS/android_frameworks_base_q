@@ -205,13 +205,13 @@ public class MobileSignalController extends SignalController<
                     mShowLteFourGee = Settings.System.getIntForUser(
                             mContext.getContentResolver(),
                             Settings.System.SHOW_LTE_FOURGEE,
-                            0, UserHandle.USER_CURRENT) == 1;
+                            1, UserHandle.USER_CURRENT) == 1;
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.SHOW_VOLTE_ICON))) {
                     mVoLTEicon = Settings.System.getIntForUser(
                             mContext.getContentResolver(),
                             Settings.System.SHOW_VOLTE_ICON,
-                            0, UserHandle.USER_CURRENT) == 1;
+                            1, UserHandle.USER_CURRENT) == 1;
             }
             mapIconSets();
             updateTelephony();
