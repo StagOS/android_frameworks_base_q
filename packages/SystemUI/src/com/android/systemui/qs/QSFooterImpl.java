@@ -107,14 +107,14 @@ public class QSFooterImpl extends FrameLayout implements Tunable, QSFooter,
 
     private OnClickListener mExpandClickListener;
 
-    /*private final ContentObserver mDeveloperSettingsObserver = new ContentObserver(
+    private final ContentObserver mDeveloperSettingsObserver = new ContentObserver(
             new Handler(mContext.getMainLooper())) {
         @Override
         public void onChange(boolean selfChange, Uri uri) {
             super.onChange(selfChange, uri);
             setBuildText();
         }
-    };*/
+    };
 
     @Inject
     public QSFooterImpl(@Named(VIEW_CONTEXT) Context context, AttributeSet attrs,
@@ -168,11 +168,11 @@ public class QSFooterImpl extends FrameLayout implements Tunable, QSFooter,
                 oldBottom) -> updateAnimator(right - left));
         setImportantForAccessibility(IMPORTANT_FOR_ACCESSIBILITY_YES);
         updateEverything();
-        //setBuildText();
+        setBuildText();
     }
 
     private void setBuildText() {
-        /*TextView v = findViewById(R.id.build);
+        TextView v = findViewById(R.id.build);
         if (v == null) return;
         if (DevelopmentSettingsEnabler.isDevelopmentSettingsEnabled(mContext)) {
             v.setText(mContext.getString(
@@ -182,7 +182,7 @@ public class QSFooterImpl extends FrameLayout implements Tunable, QSFooter,
             v.setVisibility(View.VISIBLE);
         } else {
             v.setVisibility(View.GONE);
-        }*/
+        }
     }
 
     public void onTuningChanged(String key, String newValue) {
@@ -267,9 +267,9 @@ public class QSFooterImpl extends FrameLayout implements Tunable, QSFooter,
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         Dependency.get(TunerService.class).addTunable(this, QS_FOOTER_SHOW_SETTINGS);
-        /*mContext.getContentResolver().registerContentObserver(
+        mContext.getContentResolver().registerContentObserver(
                 Settings.Global.getUriFor(Settings.Global.DEVELOPMENT_SETTINGS_ENABLED), false,
-                mDeveloperSettingsObserver, UserHandle.USER_ALL);*/
+                mDeveloperSettingsObserver, UserHandle.USER_ALL);
     }
 
     @Override
@@ -277,7 +277,7 @@ public class QSFooterImpl extends FrameLayout implements Tunable, QSFooter,
     public void onDetachedFromWindow() {
         setListening(false);
         Dependency.get(TunerService.class).removeTunable(this);
-        //mContext.getContentResolver().unregisterContentObserver(mDeveloperSettingsObserver);
+        mContext.getContentResolver().unregisterContentObserver(mDeveloperSettingsObserver);
         super.onDetachedFromWindow();
     }
 
