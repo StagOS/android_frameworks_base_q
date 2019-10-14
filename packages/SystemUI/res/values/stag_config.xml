@@ -30,4 +30,7 @@
     <!-- The CPUs to display in CPUInfoService view -->
     <string name="config_displayCpus" translatable="false"></string>
 
+    <!-- Max visible system icons -->
+    <integer name="config_maxVisibleStatusIconContainer">6</integer>
+
 </resources>
