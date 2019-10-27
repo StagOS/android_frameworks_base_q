@@ -162,4 +162,8 @@
     <string name="accessibility_quick_settings_hwkeys_on">HW keys on</string>
     <string name="accessibility_quick_settings_hwkeys_off">HW keys off</string>
     <string name="quick_settings_hwkeys_label">HW keys</string>
+
+    <!-- Screenrecord -->
+    <string name="screenrecord_stopdot_label">Show stop dot</string>
+    <string name="global_action_screenshot_cust">Screenshot/Rec</string>
 </resources>
