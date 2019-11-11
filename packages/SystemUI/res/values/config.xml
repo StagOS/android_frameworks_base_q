@@ -68,7 +68,7 @@
     <!-- Vibration duration for GlowPadView used in SearchPanelView -->
     <integer translatable="false" name="config_search_panel_view_vibration_duration">20</integer>
 
-6    <!-- Show mic or phone affordance on Keyguard -->
+    <!-- Show mic or phone affordance on Keyguard -->
     <bool name="config_keyguardShowLeftAffordance">true</bool>
 
     <!-- Show camera affordance on Keyguard -->
