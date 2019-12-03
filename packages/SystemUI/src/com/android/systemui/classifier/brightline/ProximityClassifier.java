@@ -24,6 +24,8 @@ import android.hardware.SensorEvent;
 import android.provider.DeviceConfig;
 import android.view.MotionEvent;
 
+import com.android.systemui.util.ProximitySensor;
+
 
 /**
  * False touch if proximity sensor is covered for more than a certain percentage of the gesture.
@@ -97,14 +99,12 @@ class ProximityClassifier extends FalsingClassifier {
     }
 
     @Override
-    public void onSensorEvent(SensorEvent sensorEvent) {
-        if (sensorEvent.sensor.getType() == Sensor.TYPE_PROXIMITY) {
-            logDebug("Sensor is: " + (sensorEvent.values[0] < sensorEvent.sensor.getMaximumRange())
-                    + " at time " + sensorEvent.timestamp);
-            update(
-                    sensorEvent.values[0] < sensorEvent.sensor.getMaximumRange(),
-                    sensorEvent.timestamp);
-        }
+    public void onProximityEvent(
+            ProximitySensor.ProximityEvent proximityEvent) {
+        boolean near = proximityEvent.getNear();
+        long timestampNs = proximityEvent.getTimestampNs();
+        logDebug("Sensor is: " + near + " at time " + timestampNs);
+        update(near, timestampNs);
     }
 
     @Override
