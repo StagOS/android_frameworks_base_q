@@ -28,11 +28,14 @@ import com.android.systemui.dock.DockManagerImpl;
 import com.android.systemui.power.EnhancedEstimates;
 import com.android.systemui.power.EnhancedEstimatesImpl;
 import com.android.systemui.statusbar.NotificationLockscreenUserManager;
-import com.android.systemui.statusbar.NotificationLockscreenUserManagerImpl;
+import com.android.systemui.statusbar.notification.NotificationEntryManager;
 import com.android.systemui.statusbar.notification.collection.NotificationData;
 import com.android.systemui.statusbar.phone.KeyguardEnvironmentImpl;
 import com.android.systemui.statusbar.phone.ShadeController;
 import com.android.systemui.statusbar.phone.StatusBar;
+
+import com.google.android.systemui.NotificationLockscreenUserManagerGoogle;
+import com.google.android.systemui.statusbar.NotificationEntryManagerGoogle;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -61,8 +64,11 @@ abstract class SystemUIDefaultModule {
 
     @Binds
     abstract NotificationLockscreenUserManager bindNotificationLockscreenUserManager(
-            NotificationLockscreenUserManagerImpl notificationLockscreenUserManager);
+            NotificationLockscreenUserManagerGoogle notificationLockscreenUserManager);
 
+    @Binds
+    abstract NotificationEntryManager bindNotificationEntryManager(
+            NotificationEntryManagerGoogle notificationEntryManager);
     @Binds
     abstract DockManager bindDockManager(DockManagerImpl dockManager);
 

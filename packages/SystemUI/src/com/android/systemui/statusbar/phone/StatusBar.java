@@ -264,8 +264,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         OnHeadsUpChangedListener, CommandQueue.Callbacks, ZenModeController.Callback,
         ColorExtractor.OnColorsChangedListener, ConfigurationListener,
         StatusBarStateController.StateListener, ShadeController,
-        ActivityLaunchAnimator.Callback, AmbientPulseManager.OnAmbientChangedListener,
-        AppOpsController.Callback ,TunerService.Tunable {
+        ActivityLaunchAnimator.Callback, AppOpsController.Callback, TunerService.Tunable {
     public static final boolean MULTIUSER_DEBUG = false;
 
     public static final boolean ENABLE_CHILD_NOTIFICATIONS
@@ -4159,7 +4158,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         }
         if (!mNotificationPanel.canCameraGestureBeLaunched(
                 mStatusBarKeyguardViewManager.isShowing()
-                        && (mExpandedVisible || mBouncerShowing))) {
+                        && (mExpandedVisible || mBouncerShowing), source)) {
             if (DEBUG_CAMERA_LIFT) Slog.d(TAG, "Can't launch camera right now, mExpandedVisible: " +
                     mExpandedVisible);
             return;

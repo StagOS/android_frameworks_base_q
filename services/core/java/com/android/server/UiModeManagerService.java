@@ -47,6 +47,7 @@ import android.os.ServiceManager;
 import android.os.ShellCallback;
 import android.os.ShellCommand;
 import android.os.SystemProperties;
+import android.os.UserManager;
 import android.os.UserHandle;
 import android.provider.Settings.Secure;
 import android.service.dreams.Sandman;

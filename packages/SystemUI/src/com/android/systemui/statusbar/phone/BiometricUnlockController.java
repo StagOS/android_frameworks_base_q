@@ -143,17 +143,6 @@ public class BiometricUnlockController extends KeyguardUpdateMonitorCallback {
     private boolean mHasScreenTurnedOnSinceAuthenticating;
     private boolean mFadedAwayAfterWakeAndUnlock;
 
-//On Compilation error if any remove from here
-    private final TunerService.Tunable mFaceDismissedKeyguardTunable = new TunerService.Tunable() {
-        @Override
-        public void onTuningChanged(String key, String newValue) {
-            int defaultValue = mFaceDismissesKeyguardByDefault ? 1 : 0;
-            mFaceDismissesKeyguard = Settings.Secure.getIntForUser(mContext.getContentResolver(),
-                    Settings.Secure.FACE_UNLOCK_DISMISSES_KEYGUARD,
-                    defaultValue, KeyguardUpdateMonitor.getCurrentUser()) != 0;
-        }
-    };
-//Till here
     private final MetricsLogger mMetricsLogger = Dependency.get(MetricsLogger.class);
 
     public BiometricUnlockController(Context context,

@@ -63,10 +63,10 @@ public class ScreenPinningNotify {
         String gesturalText = mContext.getString(R.string.screen_pinning_title) +
                 "\n\n" + mContext.getString(R.string.screen_pinning_description_gestural);
         mLastToast = makeAllUserToastAndShow(isGestureNavEnabled
-                ? R.string.screen_pinning_toast_gesture_nav
+                ? mContext.getString(R.string.screen_pinning_toast_gesture_nav)
                 : isRecentsButtonVisible
-                        ? R.string.screen_pinning_toast
-                        : R.string.screen_pinning_toast_recents_invisible);
+                        ? mContext.getString(R.string.screen_pinning_toast)
+                        : mContext.getString(R.string.screen_pinning_toast_recents_invisible));
         mLastShowToastTime = showToastTime;
     }
 

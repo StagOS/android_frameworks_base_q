@@ -167,6 +167,16 @@ public class MobileSignalController extends SignalController<
             }
         };
 
+        mDisplayGraceHandler = new Handler(receiverLooper) {
+            @Override
+            public void handleMessage(Message msg) {
+                if (msg.what == MSG_DISPLAY_GRACE) {
+                    mIsShowingIconGracefully = false;
+                    updateTelephony();
+                }
+            }
+        };
+
         Handler mHandler = new Handler();
         SettingsObserver settingsObserver = new SettingsObserver(mHandler);
         settingsObserver.observe();
@@ -207,15 +217,6 @@ public class MobileSignalController extends SignalController<
             updateTelephony();
         }
 
-        mDisplayGraceHandler = new Handler(receiverLooper) {
-            @Override
-            public void handleMessage(Message msg) {
-                if (msg.what == MSG_DISPLAY_GRACE) {
-                    mIsShowingIconGracefully = false;
-                    updateTelephony();
-                }
-            }
-        };
     }
 
     public void setConfiguration(Config config) {
@@ -1040,7 +1041,7 @@ public class MobileSignalController extends SignalController<
                     && ((MobileState) o).roaming == roaming
                     && ((MobileState) o).imsRegistered == imsRegistered
                     && ((MobileState) o).voiceCapable == voiceCapable
-                    && ((MobileState) o).videoCapable == videoCapable;
+                    && ((MobileState) o).videoCapable == videoCapable
                     && ((MobileState) o).defaultDataOff == defaultDataOff;
         }
     }

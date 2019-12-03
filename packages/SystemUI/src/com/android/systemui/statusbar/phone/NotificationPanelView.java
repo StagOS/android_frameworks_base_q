@@ -3534,6 +3534,11 @@ public class NotificationPanelView extends PanelView implements
         mAnimateNextPositionUpdate = true;
     }
 
+
+    public void setPulseReason(int reason) {
+        mNotificationStackScroller.setPulseReason(reason);
+    }
+
     public void updateDoubleTapToSleep(boolean doubleTapToSleepEnabled) {
         mDoubleTapToSleepEnabled = doubleTapToSleepEnabled;
     }

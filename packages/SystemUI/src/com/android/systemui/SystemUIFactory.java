@@ -31,6 +31,8 @@ import com.android.keyguard.ViewMediatorCallback;
 import com.android.systemui.keyguard.DismissCallbackRegistry;
 import com.android.systemui.plugins.FalsingManager;
 import com.android.systemui.plugins.statusbar.StatusBarStateController;
+import com.android.systemui.power.EnhancedEstimates;
+import com.android.systemui.power.EnhancedEstimatesImpl;
 import com.android.systemui.statusbar.KeyguardIndicationController;
 import com.android.systemui.statusbar.NotificationMediaManager;
 import com.android.systemui.statusbar.ScrimView;
@@ -51,12 +53,18 @@ import com.android.systemui.volume.VolumeDialogComponent;
 
 import java.util.function.Consumer;
 
+import javax.inject.Named;
+import javax.inject.Singleton;
+
+import dagger.Component;
 import dagger.Module;
 import dagger.Provides;
 
 /**
  * Class factory to provide customizable SystemUI components.
  */
+
+@Module
 public class SystemUIFactory {
     private static final String TAG = "SystemUIFactory";
 
