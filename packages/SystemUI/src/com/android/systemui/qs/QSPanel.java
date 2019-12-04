@@ -120,6 +120,8 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
 
     private int mBrightnessSlider = 1;
 
+    private View mBrightnessMirror;
+
     public QSPanel(Context context) {
         this(context, null);
     }
@@ -153,6 +155,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
 
         mBrightnessController = new BrightnessController(getContext(),
                 findViewById(R.id.brightness_icon),
+                findViewById(R.id.brightness_icon_left),
                 findViewById(R.id.brightness_slider));
         mDumpController = dumpController;
 
@@ -184,8 +187,6 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
         if (mBrightnessView != null) removeView(mBrightnessView);
 
         addQSPanel();
-=======
->>>>>>> a1e195fa43d... SystemUI: Port brightness slider changes
     }
 
     protected void addDivider() {
@@ -395,6 +396,8 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
                     .findViewById(R.id.brightness_slider);
             brightnessSlider.setMirror(mirrorSlider);
             brightnessSlider.setMirrorController(mBrightnessMirrorController);
+            mBrightnessMirror = mBrightnessMirrorController.getMirror();
+            mBrightnessController.setMirrorView(mBrightnessMirror);
         }
     }
 

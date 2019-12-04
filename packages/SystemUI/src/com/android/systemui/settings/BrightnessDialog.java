@@ -50,8 +50,9 @@ public class BrightnessDialog extends Activity {
         setContentView(v);
 
         final ImageView icon = findViewById(R.id.brightness_icon);
+        final ImageView icon2 = findViewById(R.id.brightness_icon_left);
         final ToggleSliderView slider = findViewById(R.id.brightness_slider);
-        mBrightnessController = new BrightnessController(this, icon, slider);
+        mBrightnessController = new BrightnessController(this, icon, icon2, slider);
     }
 
     @Override
