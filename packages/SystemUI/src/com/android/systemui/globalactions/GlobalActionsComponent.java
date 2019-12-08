@@ -90,9 +90,9 @@ public class GlobalActionsComponent extends SystemUI implements Callbacks, Globa
     }
 
     @Override
-    public void reboot(boolean safeMode, String reason) {
+    public void reboot(boolean safeMode) {
         try {
-            mBarService.reboot(safeMode, reason);
+            mBarService.reboot(safeMode);
         } catch (RemoteException e) {
         }
     }
