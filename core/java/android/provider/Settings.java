@@ -6005,6 +6005,15 @@ public final class Settings {
         private static final Validator QS_BLUR_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
+         * Enable\Disable visibility of smart replies in notifications
+         * @hide
+         */
+        public static final String HIDE_SMART_REPLIES = "hide_smart_replies";
+
+        /** @hide */
+        private static final Validator HIDE_SMART_REPLIES_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -6160,6 +6169,7 @@ public final class Settings {
             TEXT_CLOCK_ALIGNMENT,
             TEXT_CLOCK_PADDING,
             QS_BLUR,
+            HIDE_SMART_REPLIES
         };
 
         /**
@@ -6372,6 +6382,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(LOCKSCREEN_INFO);
             PRIVATE_SETTINGS.add(TEXT_CLOCK_ALIGNMENT);
             PRIVATE_SETTINGS.add(TEXT_CLOCK_PADDING);
+            PRIVATE_SETTINGS.add(QS_BLUR);
+            PRIVATE_SETTINGS.add(HIDE_SMART_REPLIES);
         }
 
         /**
@@ -6566,6 +6578,7 @@ public final class Settings {
             VALIDATORS.put(TEXT_CLOCK_ALIGNMENT, TEXT_CLOCK_ALIGNMENT_VALIDATOR);
             VALIDATORS.put(TEXT_CLOCK_PADDING, TEXT_CLOCK_PADDING_VALIDATOR);
             VALIDATORS.put(QS_BLUR, QS_BLUR_VALIDATOR);
+            VALIDATORS.put(HIDE_SMART_REPLIES, HIDE_SMART_REPLIES_VALIDATOR);
         }
 
         /**
