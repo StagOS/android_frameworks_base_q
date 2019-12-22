@@ -455,11 +455,11 @@ public class ScrimController implements ViewTreeObserver.OnPreDrawListener, OnCo
             if (mDarkenWhileDragging) {
                 mCurrentBehindAlpha = MathUtils.lerp(GRADIENT_SCRIM_ALPHA_BUSY, alphaBehind,
                         interpolatedFract);
-                mInFrontAlpha = 0;
+                mCurrentInFrontAlpha = 0;
             } else {
                 mCurrentBehindAlpha = MathUtils.lerp(0 /* start */, alphaBehind,
                         interpolatedFract);
-                mInFrontAlpha = 0;
+                mCurrentInFrontAlpha = 0;
             }
             mCurrentBehindTint = ColorUtils.blendARGB(ScrimState.BOUNCER.getBehindTint(),
                     mState.getBehindTint(), interpolatedFract);
@@ -486,8 +486,8 @@ public class ScrimController implements ViewTreeObserver.OnPreDrawListener, OnCo
      */
     public void setAodFrontScrimAlpha(float alpha) {
         if (mState == ScrimState.AOD && mDozeParameters.getAlwaysOn()
-                && mInFrontAlpha != alpha) {
-            mInFrontAlpha = alpha;
+                && mCurrentInFrontAlpha != alpha) {
+            mCurrentInFrontAlpha = alpha;
             updateScrims();
         }
 
@@ -565,11 +565,10 @@ public class ScrimController implements ViewTreeObserver.OnPreDrawListener, OnCo
         if (aodWallpaperTimeout || occludedKeyguard) {
             mCurrentBehindAlpha = 1;
         }
-        setScrimAlpha(mScrimInFront, mInFrontAlpha);
-        setScrimAlpha(mScrimBehind, mBehindAlpha);
-        setScrimAlpha(mScrimForBubble, mBubbleAlpha);
-        // The animation could have all already finished, let's call onFinished just in case
-        onFinished();
+
+        setScrimInFrontAlpha(mCurrentInFrontAlpha);
+        setScrimBehindAlpha(mCurrentBehindAlpha);
+
         dispatchScrimsVisible();
     }
 
@@ -667,9 +666,9 @@ public class ScrimController implements ViewTreeObserver.OnPreDrawListener, OnCo
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                scrim.setTag(TAG_KEY_ANIM, null);
                 onFinished(lastCallback);
 
+                scrim.setTag(TAG_KEY_ANIM, null);
                 dispatchScrimsVisible();
 
                 if (!mDeferFinishedListener && mOnAnimationFinished != null) {
@@ -729,16 +728,6 @@ public class ScrimController implements ViewTreeObserver.OnPreDrawListener, OnCo
     }
 
     private void onFinished(Callback callback) {
-        if (isAnimating(mScrimBehind)
-            || isAnimating(mScrimInFront)
-            || isAnimating(mScrimForBubble)) {
-            if (callback != null && callback != mCallback) {
-                // Since we only notify the callback that we're finished once everything has
-                // finished, we need to make sure that any changing callbacks are also invoked
-                callback.onFinished();
-            }
-            return;
-        }
         if (mWakeLockHeld) {
             mWakeLock.release(TAG);
             mWakeLockHeld = false;
@@ -815,7 +804,10 @@ public class ScrimController implements ViewTreeObserver.OnPreDrawListener, OnCo
             } else {
                 // update the alpha directly
                 updateScrimColor(scrim, alpha, getCurrentScrimTint(scrim));
+                onFinished();
             }
+        } else {
+            onFinished();
         }
     }
 

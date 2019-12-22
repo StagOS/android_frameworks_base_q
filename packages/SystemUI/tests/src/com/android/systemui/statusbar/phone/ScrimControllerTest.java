@@ -235,9 +235,8 @@ public class ScrimControllerTest extends SysuiTestCase {
 
         mScrimController.setWakeLockScreenSensorActive(true);
         mScrimController.finishAnimationsImmediately();
-        assertScrimAlpha(TRANSPARENT /* front */,
-                SEMI_TRANSPARENT /* back */,
-                TRANSPARENT /* bubble */);
+        assertScrimVisibility(VISIBILITY_SEMI_TRANSPARENT /* front */,
+                VISIBILITY_SEMI_TRANSPARENT /* back */);
     }
 
     @Test
