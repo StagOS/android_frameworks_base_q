@@ -14,4 +14,8 @@
 <resources>
     <!-- Color of the FOD view -->
     <color name="config_fodColor">#00ff00</color>
+
+    <color name="recents_dismiss_all_background_color">@*android:color/accent_device_default_light</color>
+    <color name="recents_dismiss_all_icon_color">#8a000000</color>
+
 </resources>
