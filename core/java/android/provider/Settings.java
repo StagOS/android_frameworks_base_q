@@ -5244,6 +5244,12 @@ public final class Settings {
         /** @hide */
         private static final Validator VOLTE_ICON_VALIDATOR = BOOLEAN_VALIDATOR;
 
+        /** @hide */
+        public static final String GESTURE_PILL_TOGGLE = "gesture_pill_toggle";
+
+        /** @hide */
+        private static final Validator GESTURE_PILL_TOGGLE_VALIDATOR = BOOLEAN_VALIDATOR;
+
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
@@ -5356,6 +5362,7 @@ public final class Settings {
             STATUS_BAR_FILE_HEADER_IMAGE,
             DOZE_ON_CHARGE,
             VOLTE_ICON,
+            GESTURE_PILL_TOGGLE,
         };
 
         /**
@@ -5527,6 +5534,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUS_BAR_FILE_HEADER_IMAGE);
             PRIVATE_SETTINGS.add(DOZE_ON_CHARGE);
             PRIVATE_SETTINGS.add(VOLTE_ICON);
+            PRIVATE_SETTINGS.add(GESTURE_PILL_TOGGLE);
         }
 
 
@@ -5675,6 +5683,7 @@ public final class Settings {
             VALIDATORS.put(STATUS_BAR_FILE_HEADER_IMAGE, STATUS_BAR_FILE_HEADER_IMAGE_VALIDATOR);
             VALIDATORS.put(DOZE_ON_CHARGE, DOZE_ON_CHARGE_VALIDATOR);
             VALIDATORS.put(VOLTE_ICON, VOLTE_ICON_VALIDATOR);
+            VALIDATORS.put(GESTURE_PILL_TOGGLE, GESTURE_PILL_TOGGLE_VALIDATOR);
         }
 
         /**
