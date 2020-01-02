@@ -4123,6 +4123,12 @@ public final class Settings {
         /** @hide */
         public static final Validator ACCELEROMETER_ROTATION_ANGLES_VALIDATOR = NON_NEGATIVE_INTEGER_VALIDATOR;
 
+	/**
+         * Whether or not to vibrate when a touchscreen gesture is detected
+         * @hide
+         */
+        public static final String TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK = "touchscreen_gesture_haptic_feedback";
+
         /**
          * Control whether the accelerometer will be used to change screen
          * orientation.  If 0, it will not be used unless explicitly requested
