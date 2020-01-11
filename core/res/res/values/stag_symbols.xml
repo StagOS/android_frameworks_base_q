@@ -179,6 +179,9 @@
   <!-- Whether the device supports Smart Pixels -->
   <java-symbol type="bool" name="config_enableSmartPixels" />
 
-    <!-- Whether device has warp charging support -->
-    <java-symbol type="bool" name="config_hasWarpCharger" />
+  <!-- Whether device has warp charging support -->
+  <java-symbol type="bool" name="config_hasWarpCharger" />
+
+  <!-- Device has OnePlus haptic motor -->
+  <java-symbol type="bool" name="config_hasOnePlusHapticMotor" />
 </resources>
