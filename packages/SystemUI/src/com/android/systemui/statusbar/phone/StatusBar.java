@@ -251,6 +251,7 @@ import com.android.systemui.statusbar.policy.ConfigurationController.Configurati
 import com.android.systemui.statusbar.policy.DeviceProvisionedController;
 import com.android.systemui.statusbar.policy.DeviceProvisionedController.DeviceProvisionedListener;
 import com.android.systemui.statusbar.policy.ExtensionController;
+import com.android.systemui.statusbar.policy.FlashlightController;
 import com.android.systemui.statusbar.policy.HeadsUpManager;
 import com.android.systemui.statusbar.policy.KeyguardMonitor;
 import com.android.systemui.statusbar.policy.KeyguardUserSwitcher;
@@ -649,6 +650,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         }
     };
 
+    private FlashlightController mFlashlightController;
     private KeyguardUserSwitcher mKeyguardUserSwitcher;
     protected UserSwitcherController mUserSwitcherController;
     private CurrentUserTracker mUserTracker;
@@ -1227,6 +1229,8 @@ public class StatusBar extends SystemUI implements DemoMode,
 
         // Private API call to make the shadows look better for Recents
         ThreadedRenderer.overrideProperty("ambientRatio", String.valueOf(1.5f));
+
+        mFlashlightController = Dependency.get(FlashlightController.class);
     }
     private void adjustBrightness(int x) {
         mBrightnessChanged = true;
@@ -2349,7 +2353,20 @@ public class StatusBar extends SystemUI implements DemoMode,
 
     @Override
     public void toggleCameraFlash() {
-        mDozeServiceHost.toggleCameraFlash();
+        if (!isScreenFullyOff() && mDeviceInteractive && !mPulsing && !mDozing) {
+            toggleFlashlight();
+            return;
+        }
+        mDozeServiceHost.toggleFlashlightProximityCheck();
+    }
+
+    private void toggleFlashlight() {
+        if (mFlashlightController != null) {
+            mFlashlightController.initFlashLight();
+            if (mFlashlightController.hasFlashlight() && mFlashlightController.isAvailable()) {
+                mFlashlightController.setFlashlight(!mFlashlightController.isEnabled());
+            }
+        }
     }
 
 
@@ -5072,10 +5089,15 @@ public class StatusBar extends SystemUI implements DemoMode,
             return mAnimateScreenOff;
         }
 
-        public void toggleCameraFlash() {
+        public void toggleFlashlightProximityCheck() {
             for (Callback callback : mCallbacks) {
-                callback.toggleCameraFlash();
+                callback.toggleFlashlightProximityCheck();
             }
+        }
+
+        @Override
+        public void performToggleFlashlight() {
+            toggleFlashlight();
         }
     }
 
