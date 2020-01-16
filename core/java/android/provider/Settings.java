@@ -5932,6 +5932,24 @@ public final class Settings {
         public static final String LOCKOWNER_FONT_SIZE= "lockowner_font_size";
 
         /**
+         * Whether to show lockscreen clock
+         * @hide
+         */
+        public static final String LOCKSCREEN_CLOCK = "lockscreen_clock";
+
+        /** @hide */
+        private static final Validator LOCKSCREEN_CLOCK_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
+         * Whether to show the items underneath lockscreen clock
+         * @hide
+         */
+        public static final String LOCKSCREEN_INFO = "lockscreen_info";
+
+        /** @hide */
+        private static final Validator LOCKSCREEN_INFO_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -6081,6 +6099,8 @@ public final class Settings {
             FOD_PRESSED_STATE,
             FOD_RECOGNIZING_ANIMATION,
             FOD_ANIM,
+            LOCKSCREEN_CLOCK,
+            LOCKSCREEN_INFO,
         };
 
         /**
@@ -6288,6 +6308,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(PULSE_AMBIENT_LIGHT_AUTO_COLOR_RIGHT);
             PRIVATE_SETTINGS.add(PULSE_AMBIENT_LIGHT_COLOR_RIGHT);
             PRIVATE_SETTINGS.add(PULSE_AMBIENT_LIGHT_RIGHT_DURATION);
+            PRIVATE_SETTINGS.add(LOCKSCREEN_CLOCK);
+            PRIVATE_SETTINGS.add(LOCKSCREEN_INFO);
         }
 
         /**
@@ -6476,6 +6498,8 @@ public final class Settings {
             VALIDATORS.put(FOD_PRESSED_STATE, FOD_PRESSED_STATE_VALIDATOR);
             VALIDATORS.put(FOD_RECOGNIZING_ANIMATION, FOD_RECOGNIZING_ANIMATION_VALIDATOR);
             VALIDATORS.put(FOD_ANIM, FOD_ANIM_VALIDATOR);
+            VALIDATORS.put(LOCKSCREEN_CLOCK, LOCKSCREEN_CLOCK_VALIDATOR);
+            VALIDATORS.put(LOCKSCREEN_INFO, LOCKSCREEN_INFO_VALIDATOR);
         }
 
         /**
