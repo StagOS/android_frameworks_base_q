@@ -98,7 +98,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
                     Settings.System.STATUSBAR_CLOCK_STYLE),
                     false, this, UserHandle.USER_ALL);
             mContentResolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_CARRIER),
+                    Settings.System.STATUS_BAR_SHOW_CARRIER),
                     false, this, UserHandle.USER_ALL);
         }
 
@@ -236,6 +236,10 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
             } else {
                 showNotificationIconArea(animate);
                 updateClockStyle(animate);
+                hideCarrierName(animate);
+            } else {
+                showNotificationIconArea(animate);
+                showCarrierName(animate);
             }
         }
     }
@@ -409,12 +413,32 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         disable(getContext().getDisplayId(), mDisabled1, mDisabled1, false /* animate */);
     }
 
+    public void hideCarrierName(boolean animate) {
+        if (mCustomCarrierLabel != null) {
+            animateHide(mCustomCarrierLabel, animate, true);
+        }
+    }
+
+    public void showCarrierName(boolean animate) {
+        if (mCustomCarrierLabel != null) {
+            setCarrierLabel(animate);
+        }
+    }
+
+    private void setCarrierLabel(boolean animate) {
+        if (mShowCarrierLabel == 2 || mShowCarrierLabel == 3) {
+            animateShow(mCustomCarrierLabel, animate);
+        } else {
+            animateHide(mCustomCarrierLabel, animate, false);
+        }
+    }
+
     public void updateSettings(boolean animate) {
         mShowClock = Settings.System.getIntForUser(mContentResolver,
                 Settings.System.STATUS_BAR_CLOCK, 1,
                 UserHandle.USER_CURRENT) == 1;
         mShowCarrierLabel = Settings.System.getIntForUser(
-                mContentResolver, Settings.System.STATUS_BAR_CARRIER, 1,
+                mContentResolver, Settings.System.STATUS_BAR_SHOW_CARRIER, 1,
                 UserHandle.USER_CURRENT);
         if (!mShowClock) {
             mClockStyle = 1; // internally switch to centered clock layout because
@@ -435,5 +459,6 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
                 animateShow(mClockView, animate);
            }
         }
+        setCarrierLabel(animate);
     }
 }
