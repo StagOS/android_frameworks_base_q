@@ -233,12 +233,10 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
             if ((state1 & DISABLE_NOTIFICATION_ICONS) != 0) {
                 hideNotificationIconArea(animate);
                 animateHide(mClockView, animate, false);
-            } else {
-                showNotificationIconArea(animate);
-                updateClockStyle(animate);
                 hideCarrierName(animate);
             } else {
                 showNotificationIconArea(animate);
+                updateClockStyle(animate);
                 showCarrierName(animate);
             }
         }
@@ -415,7 +413,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
 
     public void hideCarrierName(boolean animate) {
         if (mCustomCarrierLabel != null) {
-            animateHiddenState(mCustomCarrierLabel, View.GONE, animate);
+            animateHide(mCustomCarrierLabel, animate, false);
         }
     }
 
@@ -429,7 +427,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         if (mShowCarrierLabel == 2 || mShowCarrierLabel == 3) {
             animateShow(mCustomCarrierLabel, animate);
         } else {
-            animateHiddenState(mCustomCarrierLabel, View.GONE, animate);
+            animateHide(mCustomCarrierLabel, animate, false);
         }
     }
 
