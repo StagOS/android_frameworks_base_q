@@ -193,4 +193,5 @@
     <!-- Reboot/Recovery QS Tile -->
     <string name="horns_label">Horns</string>
 
+    <string name="usage_data">used</string>
 </resources>
