@@ -51,6 +51,7 @@ import android.os.ShellCommand;
 import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.provider.Settings.Secure;
+import android.provider.Settings.System;
 import android.service.dreams.Sandman;
 import android.service.vr.IVrManager;
 import android.service.vr.IVrStateCallbacks;
@@ -81,6 +82,8 @@ final class UiModeManagerService extends SystemService {
     // Enable launching of applications when entering the dock.
     private static final boolean ENABLE_LAUNCH_DESK_DOCK_APP = true;
     private static final String SYSTEM_PROPERTY_DEVICE_THEME = "persist.sys.theme";
+
+    private static final String ACCENT_COLOR_PROP = "persist.sys.theme.accentcolor";
 
     final Object mLock = new Object();
     private int mDockState = Intent.EXTRA_DOCK_STATE_UNDOCKED;
@@ -273,6 +276,18 @@ final class UiModeManagerService extends SystemService {
         }
     };
 
+    private final ContentObserver mAccentObserver = new ContentObserver(mHandler) {
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
+            if (uri.equals(System.getUriFor(System.ACCENT_COLOR))) {
+                final int intColor = System.getIntForUser(getContext().getContentResolver(),
+                        System.ACCENT_COLOR, 0xFF00aFB4, UserHandle.USER_CURRENT);
+                String colorHex = String.format("%08x", (0xFFFFFFFF & intColor));
+                SystemProperties.set(ACCENT_COLOR_PROP, colorHex);
+            }
+        }
+    };
+
     private void updateSystemProperties() {
         int mode = Secure.getIntForUser(getContext().getContentResolver(), Secure.UI_NIGHT_MODE,
                 mNightMode, 0);
@@ -362,6 +377,8 @@ final class UiModeManagerService extends SystemService {
 
         context.getContentResolver().registerContentObserver(Secure.getUriFor(Secure.UI_NIGHT_MODE),
                 false, mDarkThemeObserver, 0);
+        context.getContentResolver().registerContentObserver(System.getUriFor(System.ACCENT_COLOR),
+                false, mAccentObserver, 0);
         mHandler.post(() -> updateSystemProperties());
     }
 
