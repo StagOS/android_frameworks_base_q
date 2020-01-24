@@ -391,7 +391,6 @@ public class StatusBarSignalPolicy implements NetworkControllerImpl.SignalCallba
         public boolean roaming;
         public boolean needsLeadingPadding;
         public CharSequence typeContentDescription;
-        public String typeContentDescription;
         public int volteId;
 
         private MobileIconState(int subId) {
