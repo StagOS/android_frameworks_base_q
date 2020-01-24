@@ -19,4 +19,6 @@
 
     <dimen name="battery_bar_view_height">6dp</dimen>
 
+    <!-- the padding on the start and the end of the statusbar -->
+    <dimen name="status_bar_extra_padding">0dp</dimen>
 </resources>
