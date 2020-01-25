@@ -24,5 +24,7 @@
 	
     <color name="gradient_start">@color/gradient_start_light</color>
     <color name="gradient_end">@color/gradient_end_light</color>
-</resources>
 
+    <color name="theme_generic_semi_transparent_color">#EAFFFFFF</color>
+
+</resources>
