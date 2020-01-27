@@ -31,6 +31,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.om.IOverlayManager;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -83,6 +84,7 @@ final class UiModeManagerService extends SystemService {
     private static final boolean ENABLE_LAUNCH_DESK_DOCK_APP = true;
     private static final String SYSTEM_PROPERTY_DEVICE_THEME = "persist.sys.theme";
 
+    private IOverlayManager mOverlayManager;
     private static final String ACCENT_COLOR_PROP = "persist.sys.theme.accentcolor";
 
     final Object mLock = new Object();
@@ -280,10 +282,7 @@ final class UiModeManagerService extends SystemService {
         @Override
         public void onChange(boolean selfChange, Uri uri) {
             if (uri.equals(System.getUriFor(System.ACCENT_COLOR))) {
-                final int intColor = System.getIntForUser(getContext().getContentResolver(),
-                        System.ACCENT_COLOR, 0xFF00aFB4, UserHandle.USER_CURRENT);
-                String colorHex = String.format("%08x", (0xFFFFFFFF & intColor));
-                SystemProperties.set(ACCENT_COLOR_PROP, colorHex);
+                applyAccentColor();
             }
         }
     };
@@ -360,6 +359,10 @@ final class UiModeManagerService extends SystemService {
 
         updateNightModeFromSettings(context, res, UserHandle.getCallingUserId());
 
+        mOverlayManager = IOverlayManager.Stub
+                .asInterface(ServiceManager.getService(Context.OVERLAY_SERVICE));
+        applyAccentColor();
+
         // Update the initial, static configurations.
         SystemServerInitThreadPool.get().submit(() -> {
             synchronized (mLock) {
@@ -378,10 +381,9 @@ final class UiModeManagerService extends SystemService {
         context.getContentResolver().registerContentObserver(Secure.getUriFor(Secure.UI_NIGHT_MODE),
                 false, mDarkThemeObserver, 0);
         context.getContentResolver().registerContentObserver(System.getUriFor(System.ACCENT_COLOR),
-                false, mAccentObserver, 0);
+                false, mAccentObserver, UserHandle.USER_ALL);
         mHandler.post(() -> updateSystemProperties());
     }
-
     @VisibleForTesting
     protected IUiModeManager getService() {
         return mService;
@@ -450,6 +452,22 @@ final class UiModeManagerService extends SystemService {
             getContext().unregisterReceiver(mOnScreenOffHandler);
         } catch (IllegalArgumentException e) {
             // we ignore this exception if the receiver is unregistered already.
+        }
+    }
+
+    private void applyAccentColor() {
+        final Context context = getContext();
+        int intColor = System.getIntForUser(context.getContentResolver(),
+                System.ACCENT_COLOR, 0xFF00AFB4, UserHandle.USER_CURRENT);
+        String colorHex = String.format("%08x", (0xFFFFFFFF & intColor));
+        String accentVal = SystemProperties.get(ACCENT_COLOR_PROP);
+        if (!accentVal.equals(colorHex)) {
+            SystemProperties.set(ACCENT_COLOR_PROP, colorHex);
+            try {
+                mOverlayManager.reloadAndroidAssets(UserHandle.USER_CURRENT);
+                mOverlayManager.reloadAssets("com.android.settings", UserHandle.USER_CURRENT);
+                mOverlayManager.reloadAssets("com.android.systemui", UserHandle.USER_CURRENT);
+            } catch (Exception e) { }
         }
     }
 
