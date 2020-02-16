@@ -5856,11 +5856,18 @@ public final class Settings {
          */
         public static final String FOD_ICON = "fod_icon";
 
+        /** @hide */
+        private static final Validator FOD_ICON_VALIDATOR = ANY_STRING_VALIDATOR;
+
         /**
          * FOD recognizing animation
          * @hide
          */
         public static final String FOD_RECOGNIZING_ANIMATION = "fod_recognizing_animation";
+
+        /** @hide */
+        private static final Validator FOD_RECOGNIZING_ANIMATION_VALIDATOR =
+                BOOLEAN_VALIDATOR;
 
         /**
          * FOD pressed state
@@ -5868,11 +5875,19 @@ public final class Settings {
          */
         public static final String FOD_PRESSED_STATE = "fod_pressed_state";
 
+        /** @hide */
+        private static final Validator FOD_PRESSED_STATE_VALIDATOR =
+                new SettingsValidators.InclusiveIntegerRangeValidator(0, 2);
+
         /**
          * FOD recognizing animation picker
          * @hide
          */
         public static final String FOD_ANIM = "fod_anim";
+
+        /** @hide */
+        private static final Validator FOD_ANIM_VALIDATOR =
+                new SettingsValidators.InclusiveIntegerRangeValidator(0, 15);
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
@@ -6020,6 +6035,10 @@ public final class Settings {
             PULSE_AMBIENT_LIGHT_AUTO_COLOR_RIGHT,
             PULSE_AMBIENT_LIGHT_COLOR_RIGHT,
             PULSE_AMBIENT_LIGHT_RIGHT_DURATION,
+            FOD_ICON,
+            FOD_PRESSED_STATE,
+            FOD_RECOGNIZING_ANIMATION,
+            FOD_ANIM,
         };
 
         /**
@@ -6411,6 +6430,10 @@ public final class Settings {
             VALIDATORS.put(PULSE_AMBIENT_LIGHT_AUTO_COLOR_RIGHT, PULSE_AMBIENT_LIGHT_AUTO_COLOR_RIGHT_VALIDATOR);
             VALIDATORS.put(PULSE_AMBIENT_LIGHT_COLOR_RIGHT, PULSE_AMBIENT_LIGHT_COLOR_RIGHT_VALIDATOR);
             VALIDATORS.put(PULSE_AMBIENT_LIGHT_RIGHT_DURATION, PULSE_AMBIENT_LIGHT_RIGHT_DURATION_VALIDATOR);
+            VALIDATORS.put(FOD_ICON, FOD_ICON_VALIDATOR);
+            VALIDATORS.put(FOD_PRESSED_STATE, FOD_PRESSED_STATE_VALIDATOR);
+            VALIDATORS.put(FOD_RECOGNIZING_ANIMATION, FOD_RECOGNIZING_ANIMATION_VALIDATOR);
+            VALIDATORS.put(FOD_ANIM, FOD_ANIM_VALIDATOR);
         }
 
         /**
