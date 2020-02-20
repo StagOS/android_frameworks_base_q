@@ -2009,6 +2009,19 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.Secure.getUriFor(
                     Settings.Secure.FP_SWIPE_TO_DISMISS_NOTIFICATIONS),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.OMNI_QS_LAYOUT_COLUMNS),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.OMNI_QS_QUICKBAR_COLUMNS),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.OMNI_QS_TILE_TITLE_VISIBILITY),
+                    false, this, UserHandle.USER_ALL);
+
         }
 
         @Override
@@ -2016,11 +2029,17 @@ public class StatusBar extends SystemUI implements DemoMode,
             if (uri.equals(Settings.Secure.getUriFor(
                     Settings.Secure.FP_SWIPE_TO_DISMISS_NOTIFICATIONS))) {
                 setFpToDismissNotifications();
+            } else if (uri.equals(Settings.System.getUriFor(Settings.System.OMNI_QS_LAYOUT_COLUMNS)) ||
+                    uri.equals(Settings.System.getUriFor(Settings.System.OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE)) ||
+                    uri.equals(Settings.System.getUriFor(Settings.System.OMNI_QS_QUICKBAR_COLUMNS)) ||
+                    uri.equals(Settings.System.getUriFor(Settings.System.OMNI_QS_TILE_TITLE_VISIBILITY))) {
+                setQsRowsColumns();
             }
         }
 
         public void update() {
             setFpToDismissNotifications();
+            setQsRowsColumns();
         }
     }
 
@@ -2028,6 +2047,14 @@ public class StatusBar extends SystemUI implements DemoMode,
         mFpDismissNotifications = Settings.Secure.getIntForUser(mContext.getContentResolver(),
                 Settings.Secure.FP_SWIPE_TO_DISMISS_NOTIFICATIONS, 0,
                 UserHandle.USER_CURRENT) == 1;
+    }
+
+    private void setQsRowsColumns() {
+        if (mQSPanel != null) {
+            mQSPanel.updateResources();
+            mQSPanel.updateSettings();
+            mQuickQSPanel.updateSettings();
+        }
     }
 
     /**
