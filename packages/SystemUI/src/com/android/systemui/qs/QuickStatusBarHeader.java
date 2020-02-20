@@ -22,20 +22,16 @@ import android.annotation.ColorInt;
 import android.app.ActivityManager;
 import android.app.AlarmManager;
 import android.content.BroadcastReceiver;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.database.ContentObserver;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.media.AudioManager;
 import android.os.Handler;
-import android.os.Looper;
-import android.os.UserHandle;
 import android.provider.AlarmClock;
 import android.provider.DeviceConfig;
 import android.provider.Settings;
@@ -262,12 +258,13 @@ public class QuickStatusBarHeader extends RelativeLayout implements
 
         // Tint for the battery icons are handled in setupHost()
         mBatteryRemainingIcon = findViewById(R.id.batteryRemainingIcon);
+        // Don't need to worry about tuner settings for this icon
+        mBatteryRemainingIcon.setIgnoreTunerUpdates(true);
         // QS will always show the estimate, and BatteryMeterView handles the case where
         // it's unavailable or charging
         mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_ESTIMATE);
         mRingerModeTextView.setSelected(true);
         mNextAlarmTextView.setSelected(true);
-
         mPermissionsHubEnabled = PrivacyItemControllerKt.isPermissionsHubEnabled();
         // Change the ignored slots when DeviceConfig flag changes
         DeviceConfig.addOnPropertyChangedListener(DeviceConfig.NAMESPACE_PRIVACY,
@@ -439,15 +436,6 @@ public class QuickStatusBarHeader extends RelativeLayout implements
                 UserHandle.USER_CURRENT) == 1;
         updateResources();
         updateStatusbarProperties();
-        updateBatteryStyle();
-    }
-
-    private void updateBatteryStyle() {
-        mBatteryRemainingIcon.mBatteryStyle = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.STATUS_BAR_BATTERY_STYLE, 0);
-        mBatteryRemainingIcon.updateBatteryStyle();
-        mBatteryRemainingIcon.updatePercentView();
-        mBatteryRemainingIcon.updateVisibility();
     }
 
     private void updateStatusIconAlphaAnimator() {
@@ -704,9 +692,6 @@ public class QuickStatusBarHeader extends RelativeLayout implements
 
         void observe() {
             ContentResolver resolver = getContext().getContentResolver();
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_BATTERY_STYLE),
-                    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_CUSTOM_HEADER), false,
                     this, UserHandle.USER_ALL);
