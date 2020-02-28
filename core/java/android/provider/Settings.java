@@ -4954,15 +4954,6 @@ public final class Settings {
                 BOOLEAN_VALIDATOR;
 
         /**
-         * @hide
-         */
-        public static final String OMNI_SHOW_CPU_OVERLAY = "show_cpu_overlay";
-
-        /** @hide */
-        private static final Validator OMNI_SHOW_CPU_OVERLAY_VALIDATOR =
-                BOOLEAN_VALIDATOR;
-
-        /**
          * Whether to display the 4g or lte network icon in the statusbar
          * @hide
          */
@@ -5633,7 +5624,6 @@ public final class Settings {
             OMNI_BACK_GESTURE_HEIGHT,
             OMNI_DOUBLE_TAP_SLEEP_GESTURE,
             OMNI_DOUBLE_TAP_SLEEP_LOCKSCREEN,
-            OMNI_SHOW_CPU_OVERLAY,
             STATUS_BAR_CLOCK,
             STATUSBAR_CLOCK_STYLE,
             STATUS_BAR_CLOCK_SECONDS,
@@ -5825,7 +5815,6 @@ public final class Settings {
             PRIVATE_SETTINGS.add(OMNI_BACK_GESTURE_HEIGHT);
             PRIVATE_SETTINGS.add(OMNI_DOUBLE_TAP_SLEEP_GESTURE);
             PRIVATE_SETTINGS.add(OMNI_DOUBLE_TAP_SLEEP_LOCKSCREEN);
-            PRIVATE_SETTINGS.add(OMNI_SHOW_CPU_OVERLAY);
             PRIVATE_SETTINGS.add(COLOR_BUCKET_OVERLAY);
             PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK);
             PRIVATE_SETTINGS.add(STATUSBAR_CLOCK_STYLE);
@@ -5995,8 +5984,6 @@ public final class Settings {
                     OMNI_DOUBLE_TAP_SLEEP_GESTURE_VALIDATOR);
             VALIDATORS.put(OMNI_DOUBLE_TAP_SLEEP_LOCKSCREEN,
                     OMNI_DOUBLE_TAP_SLEEP_LOCKSCREEN_VALIDATOR);
-            VALIDATORS.put(OMNI_SHOW_CPU_OVERLAY,
-                    OMNI_SHOW_CPU_OVERLAY_VALIDATOR);
             VALIDATORS.put(STATUS_BAR_CLOCK, STATUS_BAR_CLOCK_VALIDATOR);
             VALIDATORS.put(STATUSBAR_CLOCK_STYLE, STATUSBAR_CLOCK_STYLE_VALIDATOR);
             VALIDATORS.put(STATUS_BAR_CLOCK_SECONDS, STATUS_BAR_CLOCK_SECONDS_VALIDATOR);
