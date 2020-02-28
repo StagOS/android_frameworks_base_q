@@ -29,6 +29,7 @@ import com.android.systemui.qs.tileimpl.QSTileImpl;
 import com.android.systemui.R;
 
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
+import javax.inject.Inject;
 
 /** Quick settings tile: CPUInfo overlay **/
 public class CPUInfoTile extends QSTileImpl<BooleanState> {
@@ -36,6 +37,7 @@ public class CPUInfoTile extends QSTileImpl<BooleanState> {
     private final GlobalSetting mSetting;
     private final Icon mIcon = ResourceIcon.get(R.drawable.ic_qs_cpuinfo);
 
+    @Inject
     public CPUInfoTile(QSHost host) {
         super(host);
 
