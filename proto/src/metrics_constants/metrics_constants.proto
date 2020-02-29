@@ -7439,6 +7439,9 @@ message MetricsEvent {
     HORNS = 1999;
 
     // Panel for Mobile Data
-    PANEL_MOBILE_DATA = 2000;
+    PANEL_MOBILE_DATA = 2002;
+
+    // Panel for Bluetooth
+    PANEL_BLUETOOTH = 9004;
   }
 }
