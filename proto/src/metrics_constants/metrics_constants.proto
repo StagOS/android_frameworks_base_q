@@ -7439,6 +7439,6 @@ message MetricsEvent {
     HORNS = 1999;
 
     // Panel for Mobile Data
-    PANEL_MOBILE_DATA = 2002;
+    PANEL_MOBILE_DATA = 2000;
   }
 }
