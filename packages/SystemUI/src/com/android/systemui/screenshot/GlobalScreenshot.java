@@ -818,7 +818,7 @@ class GlobalScreenshot {
             @Override
             public void onClick(View v) {
                 mScreenshotLayout.post(() -> {
-                    finisher.run();
+                    finisher.accept(null);
                     hideScreenshotSelector();
                 });
             }

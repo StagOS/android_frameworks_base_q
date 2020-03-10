@@ -1603,7 +1603,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         public void run() {
                 boolean dockMinimized = mWindowManagerInternal.isMinimizedDock();
                 mDefaultDisplayPolicy.takeScreenshot(mScreenshotType, dockMinimized);
-            }
         }
     }
 
