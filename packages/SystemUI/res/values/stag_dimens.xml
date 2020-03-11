@@ -20,8 +20,6 @@
     <!-- Padding needed on bottom of lockscreen for FoD devices -->
     <dimen name="op_keyguard_indication_margin_bottom">415.0px</dimen>
 
-    <dimen name="battery_bar_view_height">6dp</dimen>
-
     <!-- the padding on the start and the end of the statusbar -->
     <dimen name="status_bar_extra_padding">0dp</dimen>
 
