@@ -166,6 +166,9 @@ public class QSCustomizer extends LinearLayout implements OnMenuItemClickListene
         }
         mTileAdapter.setColumns(columns);
         mGlm.setSpanCount(columns);
+        mHeaderImageEnabled = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.STATUS_BAR_CUSTOM_HEADER, 0,
+                UserHandle.USER_CURRENT) == 1;
     }
 
     private void updateNavBackDrop(Configuration newConfig) {
