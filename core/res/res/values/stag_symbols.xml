@@ -184,4 +184,10 @@
 
   <!-- Device has OnePlus haptic motor -->
   <java-symbol type="bool" name="config_hasOnePlusHapticMotor" />
+
+  <!-- Library path of screen off fod handler -->
+  <java-symbol type="string" name="config_fodScreenOffHandlerLib" />
+
+  <!-- Class name of screen off fod handler -->
+  <java-symbol type="string" name="config_fodScreenOffHandlerClass" />
 </resources>
