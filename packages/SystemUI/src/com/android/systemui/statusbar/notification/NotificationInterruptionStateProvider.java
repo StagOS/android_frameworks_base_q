@@ -371,7 +371,7 @@ public class NotificationInterruptionStateProvider {
         isImportantHeadsUp = notificationPackageName.contains("dialer") ||
                 notificationPackageName.contains("messaging") ||
                 notificationPackageName.contains("clock");
-        return !getShadeController().isDozing() && mLessBoringHeadsUp && !isImportantHeadsUp;
+        return !getShadeController().isDozing() && mLessBoringHeadsUp && mSkipHeadsUp && !isImportantHeadsUp;
     }
 
     /**
@@ -386,7 +386,7 @@ public class NotificationInterruptionStateProvider {
 
         if (mPresenter.isDeviceInVrMode() || shouldSkipHeadsUp(sbn))) {
             if (DEBUG_HEADS_UP) {
-                Log.d(TAG, "No alerting: no huns or vr mode or less boring headsup enabled or gaming mode");
+                Log.d(TAG, "No alerting: no huns or vr mode or less boring headsup or gaming mode enabled");
             }
             return false;
         }
