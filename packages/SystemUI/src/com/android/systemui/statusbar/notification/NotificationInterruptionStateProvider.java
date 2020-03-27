@@ -405,7 +405,7 @@ public class NotificationInterruptionStateProvider {
     public boolean canAlertAwakeCommon(NotificationEntry entry) {
         StatusBarNotification sbn = entry.notification;
 
-        if (mPresenter.isDeviceInVrMode() || shouldSkipHeadsUp(sbn))) {
+        if (mPresenter.isDeviceInVrMode() || shouldSkipHeadsUp(sbn)) {
             if (DEBUG_HEADS_UP) {
                 Log.d(TAG, "No alerting: no huns or vr mode or less boring headsup or gaming mode enabled");
             }
