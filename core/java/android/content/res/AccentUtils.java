@@ -17,6 +17,8 @@ import android.graphics.Color;
 import android.os.SystemProperties;
 import android.util.Log;
 
+
+/** @hide */
 public class AccentUtils {
     private static final String TAG = "AccentUtils";
 
