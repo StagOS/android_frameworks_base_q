@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.internal.util.ion;
+package com.android.internal.util.stag;
 
 import android.content.Context;
 import android.content.res.Resources;
