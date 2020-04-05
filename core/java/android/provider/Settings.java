@@ -5996,6 +5996,14 @@ public final class Settings {
         */
        public static final String LOCKSCREEN_ALBUM_ART_FILTER = "lockscreen_album_art_filter";
 
+       /**
+         * QS blur
+         * @hide
+         */
+        public static final String QS_BLUR = "qs_blur";
+        /** @hide */
+        private static final Validator QS_BLUR_VALIDATOR = BOOLEAN_VALIDATOR;
+
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
@@ -6151,6 +6159,7 @@ public final class Settings {
             LOCKSCREEN_INFO,
             TEXT_CLOCK_ALIGNMENT,
             TEXT_CLOCK_PADDING,
+            QS_BLUR,
         };
 
         /**
@@ -6556,6 +6565,7 @@ public final class Settings {
             VALIDATORS.put(LOCKSCREEN_INFO, LOCKSCREEN_INFO_VALIDATOR);
             VALIDATORS.put(TEXT_CLOCK_ALIGNMENT, TEXT_CLOCK_ALIGNMENT_VALIDATOR);
             VALIDATORS.put(TEXT_CLOCK_PADDING, TEXT_CLOCK_PADDING_VALIDATOR);
+            VALIDATORS.put(QS_BLUR, QS_BLUR_VALIDATOR);
         }
 
         /**
