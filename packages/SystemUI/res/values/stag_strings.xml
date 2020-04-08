@@ -194,4 +194,8 @@
     <string name="horns_label">Horns</string>
 
     <string name="usage_data">used</string>
+
+    <!-- Alerting notification header label -->
+    <string name="notification_section_header_alerting">Alerting notifications</string>
+
 </resources>
