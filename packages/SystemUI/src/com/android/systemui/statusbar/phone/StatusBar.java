@@ -2296,6 +2296,12 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.BACK_SWIPE_EXTENDED),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.LEFT_VERTICAL_BACK_SWIPE_ACTION),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.RIGHT_VERTICAL_BACK_SWIPE_ACTION),
+                    false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -2317,7 +2323,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             } else if (uri.equals(Settings.System.getUriFor(Settings.System.BACK_SWIPE_EXTENDED)) ||
                     uri.equals(Settings.System.getUriFor(Settings.System.LONG_BACK_SWIPE_TIMEOUT)) ||
                     uri.equals(Settings.System.getUriFor(Settings.System.LEFT_LONG_BACK_SWIPE_ACTION)) ||
-                    uri.equals(Settings.System.getUriFor(Settings.System.RIGHT_LONG_BACK_SWIPE_ACTION))) {
+                    uri.equals(Settings.System.getUriFor(Settings.System.RIGHT_LONG_BACK_SWIPE_ACTION)) ||
+                    uri.equals(Settings.System.getUriFor(Settings.System.LEFT_VERTICAL_BACK_SWIPE_ACTION)) ||
+                    uri.equals(Settings.System.getUriFor(Settings.System.RIGHT_VERTICAL_BACK_SWIPE_ACTION))) {
                 setGestureNavOptions();
             }
         }
