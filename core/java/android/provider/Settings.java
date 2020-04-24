@@ -5585,15 +5585,6 @@ public final class Settings {
         private static final Validator OMNI_QS_LAYOUT_ROWS_VALIDATOR = ANY_INTEGER_VALIDATOR;
 
         /**
-         * @hide
-         */
-        public static final String OMNI_QS_QUICKBAR_COLUMNS = "qs_quickbar_columns";
-
-        /** @hide */
-        private static final Validator OMNI_QS_QUICKBAR_COLUMNS_VALIDATOR =
-                ANY_INTEGER_VALIDATOR;
-
-        /**
          * Whether to use partial screenshot when using volume keys
          * @hide
          */
@@ -6075,7 +6066,6 @@ public final class Settings {
             OMNI_QS_LAYOUT_COLUMNS,
             OMNI_QS_TILE_TITLE_VISIBILITY,
             OMNI_QS_LAYOUT_ROWS,
-            OMNI_QS_QUICKBAR_COLUMNS,
             SCREENSHOT_TYPE,
             SWAP_VOLUME_BUTTONS,
             ALLOW_INCALL_HOME,
@@ -6287,7 +6277,6 @@ public final class Settings {
             PRIVATE_SETTINGS.add(OMNI_QS_LAYOUT_COLUMNS);
             PRIVATE_SETTINGS.add(OMNI_QS_TILE_TITLE_VISIBILITY);
             PRIVATE_SETTINGS.add(OMNI_QS_LAYOUT_ROWS);
-            PRIVATE_SETTINGS.add(OMNI_QS_QUICKBAR_COLUMNS);
             PRIVATE_SETTINGS.add(SCREENSHOT_TYPE);
             PRIVATE_SETTINGS.add(SWAP_VOLUME_BUTTONS);
             PRIVATE_SETTINGS.add(ALLOW_INCALL_HOME);
@@ -6473,7 +6462,6 @@ public final class Settings {
             VALIDATORS.put(OMNI_QS_LAYOUT_COLUMNS, OMNI_QS_LAYOUT_COLUMNS_VALIDATOR);
             VALIDATORS.put(OMNI_QS_TILE_TITLE_VISIBILITY, OMNI_QS_TILE_TITLE_VISIBILITY_VALIDATOR);
             VALIDATORS.put(OMNI_QS_LAYOUT_ROWS, OMNI_QS_LAYOUT_ROWS_VALIDATOR);
-            VALIDATORS.put(OMNI_QS_QUICKBAR_COLUMNS, OMNI_QS_QUICKBAR_COLUMNS_VALIDATOR);
             VALIDATORS.put(SCREENSHOT_TYPE, SCREENSHOT_TYPE_VALIDATOR);
             VALIDATORS.put(SWAP_VOLUME_BUTTONS, SWAP_VOLUME_BUTTONS_VALIDATOR);
             VALIDATORS.put(ALLOW_INCALL_HOME, ALLOW_INCALL_HOME_VALIDATOR);
