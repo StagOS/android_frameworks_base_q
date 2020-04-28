@@ -213,6 +213,10 @@ public class KeyguardSliceView extends LinearLayout implements View.OnClickListe
                 Settings.System.LOCK_DATE_FONTS, 28);
     }
 
+    public void setRowContainerGravity(int gravity) {
+        mRowContainer.setGravity(gravity);
+    }
+
     /**
      * Returns whether the current visible slice has a title/header.
      */

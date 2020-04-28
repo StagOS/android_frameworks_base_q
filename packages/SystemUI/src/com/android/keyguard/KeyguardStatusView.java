@@ -35,6 +35,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.util.Slog;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
@@ -283,6 +284,20 @@ public class KeyguardStatusView extends GridLayout implements
         if (mOwnerInfo != null) {
             mOwnerInfo.setTextSize(TypedValue.COMPLEX_UNIT_PX,
                     getResources().getDimensionPixelSize(R.dimen.lock_date_font_size_18));
+        }
+        if (mKeyguardSlice != null) {
+            // Dont hide slice view in doze
+            final ContentResolver resolver = mContext.getContentResolver();
+            String currentClock = Settings.Secure.getString(
+                resolver, Settings.Secure.LOCK_SCREEN_CUSTOM_CLOCK_FACE);
+            boolean mCustomClockSelection = currentClock == null ? false : currentClock.contains("Type");
+
+            // If text style clock, align the date widget to start else keep it center.
+            if (mCustomClockSelection) {
+                mKeyguardSlice.setRowContainerGravity(Gravity.START);
+            } else {
+                mKeyguardSlice.setRowContainerGravity(Gravity.CENTER);
+            }
         }
         loadBottomMargin();
     }
