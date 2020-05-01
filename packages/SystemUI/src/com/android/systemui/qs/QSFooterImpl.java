@@ -396,7 +396,7 @@ public class QSFooterImpl extends FrameLayout implements Tunable, QSFooter,
 
     @Override
     public boolean onLongClick(View v) {
-        if (v == mSettingsButton) {
+        if (v == mSettingsButton && mExpanded) {
             startHornsActivity();
         }
         return false;
