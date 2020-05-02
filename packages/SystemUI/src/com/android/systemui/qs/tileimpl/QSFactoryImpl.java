@@ -1,3 +1,4 @@
+
 /*
  * Copyright (C) 2017 The Android Open Source Project
  *
@@ -44,6 +45,7 @@ import com.android.systemui.qs.tiles.GamingModeTile;
 import com.android.systemui.qs.tiles.HWKeysTile;
 import com.android.systemui.qs.tiles.HeadsUpTile;
 import com.android.systemui.qs.tiles.HotspotTile;
+import com.android.systemui.qs.tiles.HornsTile;
 import com.android.systemui.qs.tiles.IntentTile;
 import com.android.systemui.qs.tiles.LocationTile;
 import com.android.systemui.qs.tiles.LteTile;
@@ -107,6 +109,7 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<ScreenRecordTile> mScreenRecordTileProvider;
     private final Provider<SmartPixelsTile> mSmartPixelsTileProvider;
     private final Provider<VolumeTile> mVolumeTileProvider;
+    private final Provider<HornsTile> mHornsTileProvider;
 
     private QSTileHost mHost;
 
@@ -144,7 +147,8 @@ public class QSFactoryImpl implements QSFactory {
             Provider<ScreenRecordTile> screenRecordTileProvider,
             Provider<SmartPixelsTile> smartPixelsTileProvider,
             Provider<FPSInfoTile> fpsInfoTileProvider,
-            Provider<VolumeTile> volumeTileProvider) {
+            Provider<VolumeTile> volumeTileProvider,
+            Provider<HornsTile> hornsTileProvider) {
         mWifiTileProvider = wifiTileProvider;
         mBluetoothTileProvider = bluetoothTileProvider;
         mCellularTileProvider = cellularTileProvider;
@@ -179,6 +183,7 @@ public class QSFactoryImpl implements QSFactory {
         mSmartPixelsTileProvider = smartPixelsTileProvider;
         mFPSInfoTileProvider = fpsInfoTileProvider;
         mVolumeTileProvider = volumeTileProvider;
+        mHornsTileProvider = hornsTileProvider;
     }
 
     public void setHost(QSTileHost host) {
@@ -266,6 +271,8 @@ public class QSFactoryImpl implements QSFactory {
                 return mFPSInfoTileProvider.get();
             case "volume_panel":
                 return mVolumeTileProvider.get();
+	    case "horns":
+                return mHornsTileProvider.get();
         }
 
         // Intent tiles.
