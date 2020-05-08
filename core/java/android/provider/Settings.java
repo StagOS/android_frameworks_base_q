@@ -5946,24 +5946,6 @@ public final class Settings {
         private static final Validator LOCKSCREEN_INFO_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
-         * Text clock alignment
-         * @hide
-         */
-        public static final String TEXT_CLOCK_ALIGNMENT = "text_clock_alignment";
-
-        /** @hide */
-        private static final Validator TEXT_CLOCK_ALIGNMENT_VALIDATOR = ANY_INTEGER_VALIDATOR;
-
-        /**
-         * Text clock padding
-         * @hide
-         */
-        public static final String TEXT_CLOCK_PADDING = "text_clock_padding";
-
-        /** @hide */
-        private static final Validator TEXT_CLOCK_PADDING_VALIDATOR = ANY_INTEGER_VALIDATOR;
-
-        /**
          * How many rows to show in the qs panel when in portrait
          * @hide
          */
@@ -6193,8 +6175,6 @@ public final class Settings {
             FOD_ANIM,
             LOCKSCREEN_CLOCK,
             LOCKSCREEN_INFO,
-            TEXT_CLOCK_ALIGNMENT,
-            TEXT_CLOCK_PADDING,
             QS_BLUR,
             HIDE_SMART_REPLIES,
             QS_PANEL_BG_USE_NEW_TINT,
@@ -6408,8 +6388,6 @@ public final class Settings {
             PRIVATE_SETTINGS.add(PULSE_AMBIENT_LIGHT_RIGHT_DURATION);
             PRIVATE_SETTINGS.add(LOCKSCREEN_CLOCK);
             PRIVATE_SETTINGS.add(LOCKSCREEN_INFO);
-            PRIVATE_SETTINGS.add(TEXT_CLOCK_ALIGNMENT);
-            PRIVATE_SETTINGS.add(TEXT_CLOCK_PADDING);
             PRIVATE_SETTINGS.add(QS_BLUR);
             PRIVATE_SETTINGS.add(HIDE_SMART_REPLIES);
             PRIVATE_SETTINGS.add(QS_PANEL_BG_USE_NEW_TINT);
@@ -6604,8 +6582,6 @@ public final class Settings {
             VALIDATORS.put(FOD_ANIM, FOD_ANIM_VALIDATOR);
             VALIDATORS.put(LOCKSCREEN_CLOCK, LOCKSCREEN_CLOCK_VALIDATOR);
             VALIDATORS.put(LOCKSCREEN_INFO, LOCKSCREEN_INFO_VALIDATOR);
-            VALIDATORS.put(TEXT_CLOCK_ALIGNMENT, TEXT_CLOCK_ALIGNMENT_VALIDATOR);
-            VALIDATORS.put(TEXT_CLOCK_PADDING, TEXT_CLOCK_PADDING_VALIDATOR);
             VALIDATORS.put(QS_BLUR, QS_BLUR_VALIDATOR);
             VALIDATORS.put(HIDE_SMART_REPLIES, HIDE_SMART_REPLIES_VALIDATOR);
             VALIDATORS.put(QS_PANEL_BG_USE_NEW_TINT, QS_PANEL_BG_USE_NEW_TINT_VALIDATOR);
