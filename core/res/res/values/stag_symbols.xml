@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <!-- StagOS gradients -->
     <java-symbol type="color" name="gradient_start_light" />
@@ -194,5 +194,7 @@
   <!-- SystemUI Restart -->
   <java-symbol type="string" name="systemui_restart_title" />
   <java-symbol type="string" name="systemui_restart_message" />
+
+  <java-symbol type="integer" name="config_flashlightProximityTimeout" />
 
 </resources>
