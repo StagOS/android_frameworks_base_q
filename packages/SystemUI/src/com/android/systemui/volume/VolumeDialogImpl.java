@@ -169,6 +169,7 @@ public class VolumeDialogImpl implements VolumeDialog,
     private View mODICaptionsTooltipView = null;
 
     private boolean mLeftVolumeRocker;
+    private boolean mExpanded;
 
     private boolean isMediaShowing = true;
     private boolean isRingerShowing = false;
@@ -209,7 +210,6 @@ public class VolumeDialogImpl implements VolumeDialog,
     }
 
     private SettingsObserver settingsObserver;
-    private boolean mExpanded;
 
     public VolumeDialogImpl(Context context) {
         mContext =
@@ -342,7 +342,6 @@ public class VolumeDialogImpl implements VolumeDialog,
 
         mExpandRowsView = mDialog.findViewById(R.id.expandable_indicator_container);
         mExpandRows = mDialog.findViewById(R.id.expandable_indicator);
-        mExpandRows.setOnLongClickListener(this);
 
         if (mRows.isEmpty()) {
             if (!AudioSystem.isSingleVolume(mContext)) {
@@ -1542,8 +1541,7 @@ public class VolumeDialogImpl implements VolumeDialog,
 
     public boolean onLongClick(View v) {
         if (v == mExpandRows) {
-            startSoundActivity();
-            mController.vibrate(VibrationEffect.get(VibrationEffect.EFFECT_HEAVY_CLICK));
+	            startSoundActivity();
         }
         return false;
     }
