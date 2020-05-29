@@ -563,4 +563,12 @@ public class StagUtils {
             return mService.getOverlayInfosForTarget(target, userId);
         }
     }
+
+    // Check if gesture navbar is enabled
+    public static boolean isGestureNavbar() {
+        return StagUtils.isThemeEnabled("com.android.internal.systemui.navbar.gestural_narrow_back")
+                || StagUtils.isThemeEnabled("com.android.internal.systemui.navbar.gestural")
+                || StagUtils.isThemeEnabled("com.android.internal.systemui.navbar.gestural_wide_back")
+                || StagUtils.isThemeEnabled("com.android.internal.systemui.navbar.gestural_extra_wide_back");
+    }
 }
