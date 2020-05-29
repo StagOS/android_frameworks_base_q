@@ -731,6 +731,15 @@ public class StatusBarManagerService extends IStatusBarService.Stub implements D
                 mBar.showInDisplayFingerprintView();
             } catch (RemoteException ex) {
                 // do nothing
+	    }
+	}
+    }
+
+    public void killForegroundApp() {
+        if (mBar != null) {
+            try {
+                mBar.killForegroundApp();
+            } catch (RemoteException ex) {
             }
         }
     }

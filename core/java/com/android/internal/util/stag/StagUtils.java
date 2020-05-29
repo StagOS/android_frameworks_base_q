@@ -510,4 +510,16 @@ public class StagUtils {
             }
         }
     }
+
+    // Kill Foreground App
+    public static void killForegroundApp() {
+        IStatusBarService service = getStatusBarService();
+        if (service != null) {
+            try {
+                service.killForegroundApp();
+            } catch (RemoteException e) {
+                // do nothing.
+            }
+        }
+    }
 }
