@@ -136,7 +136,11 @@ class ImageProcessHelper {
                 for (int col = 0; col < width; col++) {
                     int pixel = grayscale.getPixel(col, row);
                     int y = Color.red(pixel) + Color.green(pixel) + Color.blue(pixel);
-                    histogram[y]++;
+		    try{
+	                histogram[y]++;
+		    } catch(Exception e){
+	                Log.e(TAG, "RGB value cannot exceed 255");
+		    }
                 }
             }
 
