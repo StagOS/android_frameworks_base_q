@@ -1006,7 +1006,7 @@ public class Build {
      * Stag fingerprint
      * @hide
      */
-    public static final String PROP_STAG_FINGERPRINT = "org.stag.fingerprint";
+    public static final String PROP_STAG_FINGERPRINT = "ro.stag.fingerprint";
 
     /**
      * STAG fingerprint
