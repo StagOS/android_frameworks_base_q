@@ -120,6 +120,8 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     private boolean mListening;
     private boolean mQsDisabled;
 
+    private int isBattIconQsH;
+
     private QSCarrierGroup mCarrierGroup;
     protected QuickQSPanel mHeaderQsPanel;
     protected QSTileHost mHost;
@@ -153,6 +155,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     private OngoingPrivacyChip mPrivacyChip;
     private Space mSpace;
     private BatteryMeterView mBatteryRemainingIcon;
+    private BatteryMeterView mBatteryRemainingIconQsH;
     private boolean mPermissionsHubEnabled;
 
     private PrivacyItemController mPrivacyItemController;
@@ -169,6 +172,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
             updateStatusText();
         }
     };
+
     private boolean mHasTopCutout = false;
     private boolean mPrivacyChipLogged = false;
 
@@ -267,10 +271,15 @@ public class QuickStatusBarHeader extends RelativeLayout implements
 
         // Tint for the battery icons are handled in setupHost()
         mBatteryRemainingIcon = findViewById(R.id.batteryRemainingIcon);
-        mBatteryRemainingIcon.updateColors(fillColorWhite, fillColorWhite, fillColorWhite);
         // Don't need to worry about tuner settings for this icon
         mBatteryRemainingIcon.setIgnoreTunerUpdates(true);
         mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_ON);
+        // Tint for the battery icons are handled in setupHost()
+        mBatteryRemainingIconQsH = findViewById(R.id.batteryRemainingIconQsH);
+        mBatteryRemainingIconQsH.updateColors(fillColorWhite, fillColorWhite, fillColorWhite);
+        // Don't need to worry about tuner settings for this icon
+        mBatteryRemainingIconQsH.setIgnoreTunerUpdates(true);
+        mBatteryRemainingIconQsH.setPercentShowMode(BatteryMeterView.MODE_ON);
         mRingerModeTextView.setSelected(true);
         mNextAlarmTextView.setSelected(true);
         mPermissionsHubEnabled = PrivacyItemControllerKt.isPermissionsHubEnabled();
@@ -443,6 +452,9 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         updateSBBatteryStyle();
         updateResources();
         updateDataUsageView();
+        isBattIconQsH = Settings.System.getIntForUser(getContext().getContentResolver(),
+                Settings.System.QS_BATTERY_LOCATION, 1,
+                UserHandle.USER_CURRENT);
     }
 
     private void updateQSBatteryMode() {
@@ -451,18 +463,35 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         if (showEstimate == 0) {
             mBatteryRemainingIcon.setShowPercent(0);
             mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_OFF);
+            mBatteryRemainingIconQsH.mShowBatteryPercent = 0;
+            mBatteryRemainingIconQsH.setPercentShowMode(BatteryMeterView.MODE_OFF);
         } else if (showEstimate == 1) {
-            mBatteryRemainingIcon.setShowPercent(0);
+            mBatteryRemainingIconQsH.setShowPercent(0);
+            mBatteryRemainingIconQsH.setPercentShowMode(BatteryMeterView.MODE_ON);
+            mBatteryRemainingIcon.mShowBatteryPercent =setShowPercent(0);
             mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_ON);
         } else if (showEstimate == 2) {
             mBatteryRemainingIcon.setShowPercent(1);
             mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_OFF);
+            mBatteryRemainingIconQsH.setShowPercent(1);
+            mBatteryRemainingIconQsH.setPercentShowMode(BatteryMeterView.MODE_OFF);
         } else if (showEstimate == 3 || showEstimate == 4) {
             mBatteryRemainingIcon.setShowPercent(0);
             mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_ESTIMATE);
+            mBatteryRemainingIconQsH.setShowPercent(0);
+            mBatteryRemainingIconQsH.setPercentShowMode(BatteryMeterView.MODE_ESTIMATE);
+        }
+        if (isBattIconQsH == 1) {
+            mBatteryRemainingIconQsH.setVisibility(View.VISIBLE);
+            mBatteryRemainingIcon.setVisibility(View.GONE);
+	} else if (isBattIconQsH == 0) {
+            mBatteryRemainingIcon.setVisibility(View.VISIBLE);
+            mBatteryRemainingIconQsH.setVisibility(View.GONE);
         }
         mBatteryRemainingIcon.updatePercentView();
         mBatteryRemainingIcon.updateVisibility();
+        mBatteryRemainingIconQsH.updatePercentView();
+        mBatteryRemainingIconQsH.updateVisibility();
     }
 
     private void updateDataUsageView() {
@@ -475,9 +504,19 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     private void updateSBBatteryStyle() {
         mBatteryRemainingIcon.setBatteryStyle(Settings.System.getInt(mContext.getContentResolver(),
         Settings.System.STATUS_BAR_BATTERY_STYLE, 0));
+        if (isBattIconQsH == 1) {
+            mBatteryRemainingIconQsH.setVisibility(View.VISIBLE);
+            mBatteryRemainingIcon.setVisibility(View.GONE);
+	} else if (isBattIconQsH == 0) {
+            mBatteryRemainingIcon.setVisibility(View.VISIBLE);
+            mBatteryRemainingIconQsH.setVisibility(View.GONE);
+        }
         mBatteryRemainingIcon.updateBatteryStyle();
         mBatteryRemainingIcon.updatePercentView();
         mBatteryRemainingIcon.updateVisibility();
+        mBatteryRemainingIconQsH.updateBatteryStyle();
+        mBatteryRemainingIconQsH.updatePercentView();
+        mBatteryRemainingIconQsH.updateVisibility();
     }
 
     private void updateStatusIconAlphaAnimator() {
@@ -695,6 +734,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
                 android.R.attr.colorForeground);
         float intensity = getColorIntensity(colorForeground);
         int fillColor = mDualToneHandler.getSingleColor(intensity);
+        mBatteryRemainingIcon.onDarkChanged(tintArea, intensity, fillColor);
     }
 
     public void setCallback(Callback qsPanelCallback) {
@@ -752,6 +792,9 @@ public class QuickStatusBarHeader extends RelativeLayout implements
                     this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System
                     .getUriFor(Settings.System.QS_DATAUSAGE), false,
+                    this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System
+                    .getUriFor(Settings.System.QS_BATTERY_LOCATION), false,
                     this, UserHandle.USER_ALL);
         }
 
