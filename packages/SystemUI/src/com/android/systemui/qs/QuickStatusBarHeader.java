@@ -271,14 +271,11 @@ public class QuickStatusBarHeader extends RelativeLayout implements
 
         // Tint for the battery icons are handled in setupHost()
         mBatteryRemainingIcon = findViewById(R.id.batteryRemainingIcon);
+        mBatteryRemainingIconQsH = findViewById(R.id.batteryRemainingIconQsH);
         // Don't need to worry about tuner settings for this icon
         mBatteryRemainingIcon.setIgnoreTunerUpdates(true);
-        mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_ON);
-        // Tint for the battery icons are handled in setupHost()
-        mBatteryRemainingIconQsH = findViewById(R.id.batteryRemainingIconQsH);
-        mBatteryRemainingIconQsH.updateColors(fillColorWhite, fillColorWhite, fillColorWhite);
-        // Don't need to worry about tuner settings for this icon
         mBatteryRemainingIconQsH.setIgnoreTunerUpdates(true);
+        mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_ON);
         mBatteryRemainingIconQsH.setPercentShowMode(BatteryMeterView.MODE_ON);
         mRingerModeTextView.setSelected(true);
         mNextAlarmTextView.setSelected(true);
@@ -463,12 +460,12 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         if (showEstimate == 0) {
             mBatteryRemainingIcon.setShowPercent(0);
             mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_OFF);
-            mBatteryRemainingIconQsH.mShowBatteryPercent = 0;
+            mBatteryRemainingIconQsH.setShowPercent(0);
             mBatteryRemainingIconQsH.setPercentShowMode(BatteryMeterView.MODE_OFF);
         } else if (showEstimate == 1) {
             mBatteryRemainingIconQsH.setShowPercent(0);
             mBatteryRemainingIconQsH.setPercentShowMode(BatteryMeterView.MODE_ON);
-            mBatteryRemainingIcon.mShowBatteryPercent =setShowPercent(0);
+            mBatteryRemainingIcon.setShowPercent(0);
             mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_ON);
         } else if (showEstimate == 2) {
             mBatteryRemainingIcon.setShowPercent(1);
@@ -735,6 +732,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         float intensity = getColorIntensity(colorForeground);
         int fillColor = mDualToneHandler.getSingleColor(intensity);
         mBatteryRemainingIcon.onDarkChanged(tintArea, intensity, fillColor);
+        mBatteryRemainingIconQsH.onDarkChanged(tintArea, intensity, fillColor);
     }
 
     public void setCallback(Callback qsPanelCallback) {
