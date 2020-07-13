@@ -221,7 +221,7 @@ public class FODCircleView extends ImageView {
 
         @Override
         public void onStrongAuthStateChanged(int userId) {
-            mCanUnlockWithFp = canUnlockWithFp(mUpdateMonitor);
+            mCanUnlockWithFp = canUnlockWithFp();
             if (mIsShowing && !mCanUnlockWithFp){
                 hide();
             }
@@ -249,18 +249,18 @@ public class FODCircleView extends ImageView {
 
     private void dispatchFodFingerprintHasEnrolledFinger(){
         if (mFodScreenOffHandler != null &&
-                mFingerprintManager != null &&
+                mFingerprintManager != null && 
                 mFingerprintManager.isHardwareDetected()) {
             boolean enrolled = mFingerprintManager.hasEnrolledFingerprints(UserHandle.myUserId());
             mFodScreenOffHandler.hasEnrolledFingerprints(enrolled);
         }
     }
 
-    public static boolean canUnlockWithFp(KeyguardUpdateMonitor updateMonitor) {
-        int currentUser = KeyguardUpdateMonitor.getCurrentUser();
-        boolean biometrics = updateMonitor.isUnlockingWithBiometricsPossible(currentUser);
+    private boolean canUnlockWithFp() {
+        int currentUser = ActivityManager.getCurrentUser();
+        boolean biometrics = mUpdateMonitor.isUnlockingWithBiometricsPossible(currentUser);
         KeyguardUpdateMonitor.StrongAuthTracker strongAuthTracker =
-                updateMonitor.getStrongAuthTracker();
+                mUpdateMonitor.getStrongAuthTracker();
         int strongAuth = strongAuthTracker.getStrongAuthForUser(currentUser);
         if (biometrics && !strongAuthTracker.hasUserAuthenticatedSinceBoot()) {
             return false;
@@ -330,7 +330,7 @@ public class FODCircleView extends ImageView {
         mUpdateMonitor = KeyguardUpdateMonitor.getInstance(context);
         mUpdateMonitor.registerCallback(mMonitorCallback);
 
-        mCanUnlockWithFp = canUnlockWithFp(mUpdateMonitor);
+        mCanUnlockWithFp = canUnlockWithFp();
 
         mFODAnimation = new FODAnimation(context, mPositionX, mPositionY);
     }
