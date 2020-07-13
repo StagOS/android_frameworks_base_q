@@ -373,7 +373,7 @@ public class FODCircleView extends ImageView {
         updateAlpha();
         dispatchPress();
 
-        setImageResource(PRESSED_STYLES[mPressedIcon]);
+        setImageDrawable(null);
         invalidate();
     }
 
