@@ -294,15 +294,15 @@ public class FODCircleView extends ImageView {
         mUpdateMonitor.registerCallback(mMonitorCallback);
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-
-        if (!mIsCircleShowing) {
-                 canvas.drawCircle(mSize / 2, mSize / 2, mSize / 2.0f, mPaintFingerprintBackground);
-        }
-        super.onDraw(canvas);
-
-    }
+    // @Override
+    // protected void onDraw(Canvas canvas) {
+    //
+    //     if (!mIsCircleShowing) {
+    //              canvas.drawCircle(mSize / 2, mSize / 2, mSize / 2.0f, mPaintFingerprintBackground);
+    //     }
+    //     super.onDraw(canvas);
+    //
+    // }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
