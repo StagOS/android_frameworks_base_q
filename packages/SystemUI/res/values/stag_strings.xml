@@ -240,6 +240,9 @@
     <!-- Oneplus Numbers clock -->
     <string name="clock_title_oneplus_numbers" translatable="false">OnePlus Numbers</string>
 
+    <!-- Oneplus Analog clock -->
+    <string name="clock_title_oneplus_minimal" translatable="false">OnePlus Minimal</string>
+
     <!-- Screen Stabilization -->
     <string name="quick_settings_stabilization_label">Screen Stabilization</string>
     <string name="quick_settings_stabilization_off">Stabilization is disabled</string>
