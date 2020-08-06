@@ -231,8 +231,8 @@ public class AnyMotionDetector {
                 Slog.d(TAG, "mCurrentGravityVector = " + currentGravityVectorString);
                 Slog.d(TAG, "mPreviousGravityVector = " + previousGravityVectorString);
             }
-            status = getStationaryStatus();
             mRunningStats.reset();
+            status = getStationaryStatus();
             if (DEBUG) Slog.d(TAG, "getStationaryStatus() returned " + status);
             if (status != RESULT_UNKNOWN) {
                 if (mWakeLock.isHeld()) {
