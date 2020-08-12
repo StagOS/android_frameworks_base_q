@@ -1,4 +1,4 @@
- <!--
+<!--
 /* Copyright 2012, The Android Open Source Project
 **
 ** Licensed under the Apache License, Version 2.0 (the "License");
@@ -3868,4 +3868,5 @@
 
   <java-symbol type="bool" name="reset_geo_fencing_check_after_boot_or_apm" />
   <java-symbol type="bool" name="config_enableAutoSuspend" />
+
 </resources>

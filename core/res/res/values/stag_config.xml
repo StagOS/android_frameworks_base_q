@@ -151,5 +151,9 @@
     <!-- Class name of screen off fod handler -->
     <string name="config_fodScreenOffHandlerClass" translatable="false"></string>
 
-     <bool name="config_has_Soli">false</bool>
+    <bool name="config_has_Soli">false</bool>
+
+     <!-- Whether device supports in-display fingerprint when screen is turned off -->
+    <bool name="config_supportsInDisplayFingerprintGesture">false</bool>
+
 </resources>
