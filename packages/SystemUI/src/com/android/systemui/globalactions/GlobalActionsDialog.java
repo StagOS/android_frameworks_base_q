@@ -564,6 +564,11 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
                 || state == SOME_AUTH_REQUIRED_AFTER_USER_REQUEST);
     }
 
+    private static boolean isPowerMenuBlurEnabled(Context context) {
+        return Settings.System.getInt(context.getContentResolver(),
+                Settings.System.POWERMENU_BLUR, 1) != 0;
+    }
+
     @Override
     public void onUiModeChanged() {
         mContext.getTheme().applyStyle(mContext.getThemeResId(), true);
@@ -1796,8 +1801,11 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
             Window window = getWindow();
             View v1 = window.getDecorView();
             window.requestFeature(Window.FEATURE_NO_TITLE);
-            Bitmap bittemp = ImageUtilities.blurImage(mContext, ImageUtilities.screenshotSurface(mContext));
-            Drawable background = new BitmapDrawable(mContext.getResources(), bittemp);
+            Bitmap surfaceBitmap = ImageUtilities.screenshotSurface(mContext);
+            if(isPowerMenuBlurEnabled(mContext) && surfaceBitmap != null){
+                Bitmap bittemp = ImageUtilities.blurImage(mContext, surfaceBitmap);
+                Drawable background = new BitmapDrawable(mContext.getResources(), bittemp);
+	    }
             // Inflate the decor view, so the attributes below are not overwritten by the theme.
             window.getDecorView();
             window.getAttributes().systemUiVisibility |= View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -1866,7 +1874,8 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
                                 FrameLayout.LayoutParams.MATCH_PARENT,
                                 FrameLayout.LayoutParams.MATCH_PARENT);
                 panelContainer.addView(mPanelController.getPanelContent(), panelParams);
-               //  mBackgroundDrawable = mPanelController.getBackgroundDrawable();
+                if(!isPowerMenuBlurEnabled(mContext))
+                    mBackgroundDrawable = mPanelController.getBackgroundDrawable();
                 mScrimAlpha = 1f;
             }
         }
@@ -1897,9 +1906,12 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
                 mScrimAlpha = ScrimController.GRADIENT_SCRIM_ALPHA;
             }
             getWindow().setBackgroundDrawable(mBackgroundDrawable);
-            Bitmap bittemp = ImageUtilities.blurImage(mContext, ImageUtilities.screenshotSurface(mContext));
-            Drawable background = new BitmapDrawable(mContext.getResources(), bittemp);
-            getWindow().setBackgroundDrawable(background);
+            Bitmap surfaceBitmap = ImageUtilities.screenshotSurface(mContext);
+            if(isPowerMenuBlurEnabled(mContext) && surfaceBitmap != null){
+                Bitmap bittemp = ImageUtilities.blurImage(mContext, surfaceBitmap);
+                Drawable background = new BitmapDrawable(mContext.getResources(), bittemp);
+                getWindow().setBackgroundDrawable(background);
+	    }
         }
 
         private void fixNavBarClipping() {
@@ -1979,10 +1991,12 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
             mShowing = true;
             mHadTopUi = mStatusBarWindowController.getForceHasTopUi();
             mStatusBarWindowController.setForceHasTopUi(true);
-            // mBackgroundDrawable.setAlpha(0);
+            if(!isPowerMenuBlurEnabled(mContext))
+                mBackgroundDrawable.setAlpha(0);
             mGlobalActionsLayout.setTranslationX(mGlobalActionsLayout.getAnimationOffsetX());
             mGlobalActionsLayout.setTranslationY(mGlobalActionsLayout.getAnimationOffsetY());
-            // mGlobalActionsLayout.setAlpha(0);
+            if(!isPowerMenuBlurEnabled(mContext))
+                mGlobalActionsLayout.setAlpha(0);
             mGlobalActionsLayout.animate()
                     .alpha(1)
                     .translationX(0)
@@ -1992,7 +2006,8 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
                     .setUpdateListener(animation -> {
                         int alpha = (int) ((Float) animation.getAnimatedValue()
                                 * mScrimAlpha * 255);
-                        // mBackgroundDrawable.setAlpha(alpha);
+                        if(!isPowerMenuBlurEnabled(mContext))
+                            mBackgroundDrawable.setAlpha(alpha);
                     })
                     .start();
         }
@@ -2016,7 +2031,8 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
                     .setUpdateListener(animation -> {
                         int alpha = (int) ((1f - (Float) animation.getAnimatedValue())
                                 * mScrimAlpha * 255);
-                        // mBackgroundDrawable.setAlpha(alpha);
+                        if(!isPowerMenuBlurEnabled(mContext))
+                            mBackgroundDrawable.setAlpha(alpha);
                     })
                     .start();
             dismissPanel();

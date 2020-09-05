@@ -6015,6 +6015,14 @@ public final class Settings {
         /** @hide */
         private static final Validator QS_BLUR_VALIDATOR = BOOLEAN_VALIDATOR;
 
+       /**
+         * QS blur
+         * @hide
+         */
+        public static final String POWERMENU_BLUR = "powermenu_blur";
+        /** @hide */
+        private static final Validator POWERMENU_BLUR_VALIDATOR = BOOLEAN_VALIDATOR;
+
         /**
          * Enable\Disable visibility of smart replies in notifications
          * @hide
@@ -6438,6 +6446,7 @@ public final class Settings {
             LOCKSCREEN_MAX_NOTIF_CONFIG,
             WIRELESS_CHARGING_ANIMATION,
             ACCENT_COLOR,
+            POWERMENU_BLUR,
         };
 
         /**
@@ -6670,6 +6679,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(ACCENT_COLOR);
             PRIVATE_SETTINGS.add(SYSTEMUI_PLUGIN_VOLUME);
             PRIVATE_SETTINGS.add(FOD_GESTURE);
+            PRIVATE_SETTINGS.add(POWERMENU_BLUR);
        }
 
         /**
@@ -6873,6 +6883,7 @@ public final class Settings {
             VALIDATORS.put(WIRELESS_CHARGING_ANIMATION, WIRELESS_CHARGING_ANIMATION_VALIDATOR);
             VALIDATORS.put(ACCENT_COLOR, ACCENT_COLOR_VALIDATOR);
             VALIDATORS.put(FOD_GESTURE, FOD_GESTURE_VALIDATOR);
+            VALIDATORS.put(POWERMENU_BLUR, POWERMENU_BLUR_VALIDATOR);
 	}
 
         /**
